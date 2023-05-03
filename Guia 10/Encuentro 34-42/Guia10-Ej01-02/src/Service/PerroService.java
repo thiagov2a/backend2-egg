@@ -37,14 +37,10 @@ public class PerroService {
 
     public void mostrarPerros(ArrayList<String> perros) {
 
-        if (!perros.isEmpty()) {
-            Collections.sort(perros);
-            System.out.println("\nLa lista se compone de las siguientes razas:");
-            for (String perro : perros) {
-                System.out.println(perro);
-            }
-        } else {
-            System.out.println("\nLa lista está vacia.");
+        Collections.sort(perros);
+        System.out.println("\nLa lista se compone de las siguientes razas:");
+        for (String perro : perros) {
+            System.out.println(perro);
         }
     }
 

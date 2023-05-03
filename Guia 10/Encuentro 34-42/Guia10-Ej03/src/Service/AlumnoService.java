@@ -51,24 +51,21 @@ public class AlumnoService {
 
         return alumnos;
     }
-    
+
     public void mostrarAlumnos(ArrayList<Alumno> alumnos) {
-        
-        if (!alumnos.isEmpty()) {
-            System.out.println("LISTA DE ALUMNOS");
-            for (Alumno alumno : alumnos) {
-                System.out.println("Alumno: " + alumno.getNombre() + " | Notas: " + alumno.getNotas());
-            }
-        } else {
-            System.out.println("La lista está vacía.");
+
+        System.out.println("LISTA DE ALUMNOS");
+        for (Alumno alumno : alumnos) {
+            System.out.println("Alumno: " + alumno.getNombre() + " | Notas: " + alumno.getNotas());
         }
     }
-    
+
     public double notaFinal(ArrayList<Alumno> alumnos, String nombre) {
-        
+
         double promedio = -1;
         for (Alumno alumno : alumnos) {
             if (alumno.getNombre().equalsIgnoreCase(nombre)) {
+                promedio = 0;
                 for (Integer nota : alumno.getNotas()) {
                     promedio += nota;
                 }
@@ -80,15 +77,14 @@ public class AlumnoService {
     }
 
     public void mostrarMenu(ArrayList<Alumno> alumnos) {
-        
-        
+
         if (!alumnos.isEmpty()) {
             mostrarAlumnos(alumnos);
             System.out.print("Ingrese nombre del alumno a promediar.\n> ");
             String nombre = input.next();
-            double promedio = notaFinal(alumnos, nombre); 
+            double promedio = notaFinal(alumnos, nombre);
             if (promedio != -1) {
-                System.out.println("El promedio del alumno '" + nombre + "' es: " + String.format("%,2f", promedio));
+                System.out.println("El promedio del alumno '" + nombre + "' es: " + promedio);
             } else {
                 System.out.println("El alumno no se encontró.");
             }
@@ -96,5 +92,5 @@ public class AlumnoService {
             System.out.println("La lista está vacía.");
         }
     }
-    
+
 }

@@ -5,10 +5,6 @@
  */
 package Main;
 
-import Entidad.Alumno;
-import Service.AlumnoService;
-import java.util.ArrayList;
-
 /**
  *
  * @author Thiago
@@ -19,12 +15,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        AlumnoService service = new AlumnoService();
-        
-        ArrayList<Alumno> alumnos = service.crearAlumnos();
-        
-        service.mostrarMenu(alumnos);
+        // TODO code application logic here
     }
     
 }
