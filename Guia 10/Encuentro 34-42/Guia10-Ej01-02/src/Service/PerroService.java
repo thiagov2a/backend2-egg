@@ -23,24 +23,28 @@ public class PerroService {
         ArrayList<String> perros = new ArrayList();
 
         String perro;
-        System.out.println("Ingrese una raza de perro para agregar en la lista.\nEscriba 's' para terminar.");
+        System.out.println("Ingrese una raza de perro para agregar en la lista.\nEscriba 'salir' para terminar.");
         do {
             System.out.print("> ");
             perro = input.nextLine();
-            if (!perro.equalsIgnoreCase("s")) {
+            if (!perro.equalsIgnoreCase("salir")) {
                 perros.add(perro);
             }
-        } while (!perro.equalsIgnoreCase("s"));
+        } while (!perro.equalsIgnoreCase("salir"));
 
         return perros;
     }
 
     public void mostrarPerros(ArrayList<String> perros) {
 
-        Collections.sort(perros);
-        System.out.println("\nLa lista se compone de las siguientes razas:");
-        for (String perro : perros) {
-            System.out.println(perro);
+        if (!perros.isEmpty()) {
+            Collections.sort(perros);
+            System.out.println("\nLa lista se compone de las siguientes razas:");
+            for (String perro : perros) {
+                System.out.println(perro);
+            }
+        } else {
+            System.out.println("\nLa lista está vacia.");
         }
     }
 
@@ -55,9 +59,9 @@ public class PerroService {
             }
         }
         if (razaBorrada) {
-            System.out.println("\nSe eliminó la raza ingresada.");
+            System.out.println("Se eliminó la raza ingresada.");
         } else {
-            System.out.println("\nLa raza no se encontró en la lista.");
+            System.out.println("La raza no se encontró en la lista.");
         }
     }
 
@@ -68,11 +72,7 @@ public class PerroService {
             System.out.print("\nIngrese raza a eliminar.\n> ");
             String raza = input.nextLine();
             eliminarPerro(perros, raza);
-            if (!perros.isEmpty()) {
-                mostrarPerros(perros);
-            } else {
-                System.out.println("\nLa lista está vacia.");
-            }
+            mostrarPerros(perros);
         } else {
             System.out.println("\nLa lista está vacia.");
         }
