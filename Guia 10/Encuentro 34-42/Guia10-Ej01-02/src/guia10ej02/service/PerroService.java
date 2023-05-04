@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Service;
+package guia10ej02.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,12 +16,16 @@ import java.util.Scanner;
  */
 public class PerroService {
 
-    private final Scanner input = new Scanner(System.in).useDelimiter("\n");
+    private final Scanner input;
+    private final ArrayList<String> perros;
 
-    public ArrayList<String> crearPerros() {
+    public PerroService() {
+        this.input = new Scanner(System.in).useDelimiter("\n");
+        this.perros = new ArrayList<>();
+    }
 
-        ArrayList<String> perros = new ArrayList();
-
+    public void crearPerros() {
+        
         String perro;
         System.out.println("Ingrese una raza de perro para agregar en la lista.\nEscriba 'salir' para terminar.");
         do {
@@ -31,11 +35,9 @@ public class PerroService {
                 perros.add(perro);
             }
         } while (!perro.equalsIgnoreCase("salir"));
-
-        return perros;
     }
 
-    public void mostrarPerros(ArrayList<String> perros) {
+    public void mostrarPerros() {
 
         Collections.sort(perros);
         System.out.println("\nLa lista se compone de las siguientes razas:");
@@ -44,7 +46,7 @@ public class PerroService {
         }
     }
 
-    public void eliminarPerro(ArrayList<String> perros, String raza) {
+    public void eliminarPerro(String raza) {
 
         Iterator<String> it = perros.iterator();
         boolean razaBorrada = false;
@@ -61,14 +63,14 @@ public class PerroService {
         }
     }
 
-    public void menuPerros(ArrayList<String> perros) {
+    public void menuPerros() {
 
         if (!perros.isEmpty()) {
-            mostrarPerros(perros);
+            mostrarPerros();
             System.out.print("\nIngrese raza a eliminar.\n> ");
             String raza = input.nextLine();
-            eliminarPerro(perros, raza);
-            mostrarPerros(perros);
+            eliminarPerro(raza);
+            mostrarPerros();
         } else {
             System.out.println("\nLa lista está vacia.");
         }

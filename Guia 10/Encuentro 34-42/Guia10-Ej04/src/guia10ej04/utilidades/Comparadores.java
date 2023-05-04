@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Comparadores;
+package guia10ej04.utilidades;
 
-import Entidad.Pelicula;
+import guia10ej04.entidad.Pelicula;
 import java.util.Comparator;
 
 /**
  *
  * @author Thiago
  */
-public class Comparador {
+public class Comparadores {
 
     public static Comparator<Pelicula> ordenarDuracionMayorAMenor = new Comparator<Pelicula>() {
         @Override

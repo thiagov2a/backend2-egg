@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Main.Entidad;
+package guia10ej05.entidad;
 
 import java.util.Objects;
 
@@ -62,7 +62,7 @@ public class Pais implements Comparable<Pais> {
 
     @Override
     public int compareTo(Pais t) {
-        return this.nombre.compareTo(t.getNombre());
+        return this.nombre.compareToIgnoreCase(t.getNombre());
     }
 
 }

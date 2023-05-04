@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Service;
+package guia10ej04.service;
 
-import static Comparadores.Comparador.ordenarAlfabeticamenteDirector;
-import static Comparadores.Comparador.ordenarAlfabeticamenteTitulo;
-import static Comparadores.Comparador.ordenarDuracionMayorAMenor;
-import static Comparadores.Comparador.ordenarDuracionMenorAMayor;
-import Entidad.Pelicula;
+import static guia10ej04.utilidades.Comparadores.ordenarAlfabeticamenteDirector;
+import static guia10ej04.utilidades.Comparadores.ordenarAlfabeticamenteTitulo;
+import static guia10ej04.utilidades.Comparadores.ordenarDuracionMayorAMenor;
+import static guia10ej04.utilidades.Comparadores.ordenarDuracionMenorAMayor;
+import guia10ej04.entidad.Pelicula;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -20,10 +20,15 @@ import java.util.Scanner;
  */
 public class PeliculaService {
 
-    private final Scanner input = new Scanner(System.in).useDelimiter("\n");
-    private ArrayList<Pelicula> peliculas = new ArrayList();
+    private final Scanner input;
+    private final ArrayList<Pelicula> peliculas;
 
-    public ArrayList<Pelicula> crearPeliculas() {
+    public PeliculaService() {
+        this.peliculas = new ArrayList();
+        this.input = new Scanner(System.in).useDelimiter("\n");
+    }
+
+    public void crearPeliculas() {
 
         String opc;
         do {
@@ -43,8 +48,6 @@ public class PeliculaService {
             System.out.println("¿Desea ingresar otra pelicula? s/n");
             opc = input.next();
         } while (!opc.equalsIgnoreCase("n"));
-
-        return peliculas;
     }
 
     public void mostrarPeliculas() {

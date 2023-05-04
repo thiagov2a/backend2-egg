@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Service;
+package guia10ej03.service;
 
-import Entidad.Alumno;
+import guia10ej03.entidad.Alumno;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -15,11 +16,16 @@ import java.util.Scanner;
  */
 public class AlumnoService {
 
-    private final Scanner input = new Scanner(System.in).useDelimiter("\n");
+    private final Scanner input;
+    private final List<Alumno> alumnos;
 
-    public ArrayList<Alumno> crearAlumnos() {
+    public AlumnoService() {
+        this.alumnos = new ArrayList<>();
+        this.input = new Scanner(System.in).useDelimiter("\n");
+    }
 
-        ArrayList<Alumno> alumnos = new ArrayList();
+    public void crearAlumnos() {
+
         System.out.println("LISTA DE ALUMNOS");
         String opc;
         do {
@@ -48,11 +54,9 @@ public class AlumnoService {
             opc = input.next();
 
         } while (!opc.equalsIgnoreCase("n"));
-
-        return alumnos;
     }
 
-    public void mostrarAlumnos(ArrayList<Alumno> alumnos) {
+    public void mostrarAlumnos() {
 
         System.out.println("LISTA DE ALUMNOS");
         for (Alumno alumno : alumnos) {
@@ -60,7 +64,7 @@ public class AlumnoService {
         }
     }
 
-    public double notaFinal(ArrayList<Alumno> alumnos, String nombre) {
+    public double notaFinal(String nombre) {
 
         double promedio = -1;
         for (Alumno alumno : alumnos) {
@@ -76,13 +80,13 @@ public class AlumnoService {
         return promedio;
     }
 
-    public void mostrarMenu(ArrayList<Alumno> alumnos) {
+    public void mostrarMenu() {
 
         if (!alumnos.isEmpty()) {
-            mostrarAlumnos(alumnos);
+            mostrarAlumnos();
             System.out.print("Ingrese nombre del alumno a promediar.\n> ");
             String nombre = input.next();
-            double promedio = notaFinal(alumnos, nombre);
+            double promedio = notaFinal(nombre);
             if (promedio != -1) {
                 System.out.println("El promedio del alumno '" + nombre + "' es: " + promedio);
             } else {

@@ -3,16 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Main;
+package guia10ej02;
 
-import Service.PerroService;
-import java.util.ArrayList;
+import guia10ej02.service.PerroService;
 
 /**
  *
  * @author Thiago
  */
-public class Main {
+public class Guia10Ej02Main {
 
     /**
      * @param args the command line arguments
@@ -20,8 +19,7 @@ public class Main {
     public static void main(String[] args) {
         
         PerroService service = new PerroService();
-        ArrayList<String> perros = service.crearPerros();
-        service.menuPerros(perros);
+        service.menuPerros();
     }
     
 }
