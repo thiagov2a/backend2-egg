@@ -8,6 +8,7 @@ package guia10ej02.service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -17,7 +18,7 @@ import java.util.Scanner;
 public class PerroService {
 
     private final Scanner input;
-    private final ArrayList<String> perros;
+    private final List<String> perros;
 
     public PerroService() {
         this.input = new Scanner(System.in).useDelimiter("\n");

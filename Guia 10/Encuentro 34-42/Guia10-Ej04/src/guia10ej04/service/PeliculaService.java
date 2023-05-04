@@ -12,6 +12,7 @@ import static guia10ej04.utilidades.Comparadores.ordenarDuracionMenorAMayor;
 import guia10ej04.entidad.Pelicula;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -21,7 +22,7 @@ import java.util.Scanner;
 public class PeliculaService {
 
     private final Scanner input;
-    private final ArrayList<Pelicula> peliculas;
+    private final List<Pelicula> peliculas;
 
     public PeliculaService() {
         this.peliculas = new ArrayList();
