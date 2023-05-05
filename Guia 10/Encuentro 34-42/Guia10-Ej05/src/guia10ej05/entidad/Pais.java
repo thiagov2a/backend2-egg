@@ -32,7 +32,7 @@ public class Pais implements Comparable<Pais> {
 
     @Override
     public String toString() {
-        return "Pais{" + "nombre=" + nombre + '}';
+        return nombre;
     }
 
     @Override

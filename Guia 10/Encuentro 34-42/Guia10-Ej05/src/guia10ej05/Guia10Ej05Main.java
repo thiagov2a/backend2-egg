@@ -17,12 +17,8 @@ public class Guia10Ej05Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
         PaisService service = new PaisService();
-        service.crearPaises();
-        service.mostrarPaises();
-        service.eliminarPais();
-        service.mostrarPaises();
+        service.mostrarMenu();
     }
-    
+
 }

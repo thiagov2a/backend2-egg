@@ -26,19 +26,20 @@ public class PaisService {
         this.input = new Scanner(System.in).useDelimiter("\n");
     }
 
-    public void crearPaises() {
+    public void agregarPais() {
+        Pais pais = new Pais();
+        System.out.print("\nIngrese nombre del país.\n> ");
+        pais.setNombre(input.next());
+        paises.add(pais);
+    }
 
+    public void crearPaises() {
+        System.out.println("LISTA DE PAÍSES");
         String opc;
         do {
-            Pais pais = new Pais();
-
-            System.out.println("Ingrese nombre del país.\n> ");
-            pais.setNombre(input.next());
-
-            paises.add(pais);
-
+            agregarPais();
             do {
-                System.out.println("¿Desea ingresar otro país? s/n\n> ");
+                System.out.print("\n¿Desea ingresar otro país? s/n\n> ");
                 opc = input.next();
             } while (!opc.equalsIgnoreCase("s") && !opc.equalsIgnoreCase("n"));
 
@@ -46,33 +47,72 @@ public class PaisService {
     }
 
     public void mostrarPaises() {
-
-        TreeSet<Pais> nombres = new TreeSet<>(paises);
-        System.out.println("PAÍSES");
-        for (Pais nombre : nombres) {
-            System.out.println(nombre);
+        if (!paises.isEmpty()) {
+            Set<Pais> nombres = new TreeSet<>(paises);
+            System.out.println("\nPAÍSES");
+            for (Pais nombre : nombres) {
+                System.out.println(nombre);
+            }
+        } else {
+            System.out.println("\nNo hay países en la lista.");
         }
     }
 
     public void eliminarPais() {
-
-        Iterator<Pais> it = paises.iterator();
-        boolean paisEncontrado = false;
-        System.out.println("Ingrese país a eliminar.\n> ");
-        String nombre = input.next();
-        while (it.hasNext()) {
-            if (it.next().getNombre().equalsIgnoreCase(nombre)) {
-                paisEncontrado = true;
-                it.remove();
+        if (!paises.isEmpty()) {
+            System.out.print("\nIngrese país a eliminar.\n> ");
+            String nombre = input.next();
+            Iterator<Pais> it = paises.iterator();
+            boolean paisEncontrado = false;
+            while (it.hasNext()) {
+                if (it.next().getNombre().equalsIgnoreCase(nombre)) {
+                    paisEncontrado = true;
+                    it.remove();
+                }
             }
-        }
-        if (paisEncontrado) {
-            System.out.println("Se eliminó el país.");
+            if (paisEncontrado) {
+                System.out.println("\nSe eliminó el país.");
+            } else {
+                System.out.println("\nNo se encontró el país.");
+            }
         } else {
-            System.out.println("No se encontró el país.");
+            System.out.println("\nNo hay países en la lista.");
         }
     }
 
-    
-    
+    public void mostrarMenu() {
+        crearPaises();
+        int opc = 0;
+        do {
+            System.out.print("\nMENÚ\n"
+                    + "1. Agregar país.\n"
+                    + "2. Mostrar países.\n"
+                    + "3. Eliminar país.\n"
+                    + "4. Salir.\n"
+                    + "> ");
+            if (input.hasNextInt()) {
+                opc = input.nextInt();
+                switch (opc) {
+                    case 1:
+                        agregarPais();
+                        break;
+                    case 2:
+                        mostrarPaises();
+                        break;
+                    case 3:
+                        eliminarPais();
+                        break;
+                    case 4:
+                        System.out.println("\n¡Hasta pronto!");
+                        break;
+                    default:
+                        System.out.println("\nOpción inválida. Intente nuevamente.");
+                        break;
+                }
+            } else {
+                System.out.println("\nOpción inválida. Intente nuevamente.");
+            }
+        } while (opc != 4);
+    }
+
 }
