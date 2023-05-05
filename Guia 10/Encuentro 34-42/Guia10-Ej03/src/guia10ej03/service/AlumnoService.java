@@ -66,18 +66,16 @@ public class AlumnoService {
 
     public double notaFinal(String nombre) {
 
-        double promedio = -1;
         for (Alumno alumno : alumnos) {
             if (alumno.getNombre().equalsIgnoreCase(nombre)) {
-                promedio = 0;
+                int sum = 0;
                 for (Integer nota : alumno.getNotas()) {
-                    promedio += nota;
+                    sum += nota;
                 }
-                promedio /= alumno.getNotas().size();
-                break;
+                return (double) sum / alumno.getNotas().size();
             }
         }
-        return promedio;
+        return -1;
     }
 
     public void mostrarMenu() {

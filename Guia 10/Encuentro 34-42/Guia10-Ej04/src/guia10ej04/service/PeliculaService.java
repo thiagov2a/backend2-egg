@@ -35,19 +35,22 @@ public class PeliculaService {
         do {
             Pelicula pelicula = new Pelicula();
 
-            System.out.println("Ingrese nombre de la pelicula:");
+            System.out.println("Ingrese nombre de la pelicula.\n> ");
             pelicula.setTitulo(input.next());
 
-            System.out.println("Ingrese director de la pelicula: ");
+            System.out.println("Ingrese director de la pelicula.\n> ");
             pelicula.setDirector(input.next());
 
-            System.out.println("Ingrese duracion de la pelicula: ");
+            System.out.println("Ingrese duracion de la pelicula.\n> ");
             pelicula.setHoras(input.nextDouble());
 
             peliculas.add(pelicula);
-
-            System.out.println("¿Desea ingresar otra pelicula? s/n");
-            opc = input.next();
+            
+            do {
+                System.out.println("¿Desea ingresar otra pelicula? s/n\n> ");
+                opc = input.next();
+            } while (!opc.equalsIgnoreCase("s") && !opc.equalsIgnoreCase("n"));
+            
         } while (!opc.equalsIgnoreCase("n"));
     }
 

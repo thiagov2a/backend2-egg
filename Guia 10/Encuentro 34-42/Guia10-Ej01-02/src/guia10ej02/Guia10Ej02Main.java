@@ -17,9 +17,10 @@ public class Guia10Ej02Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
         PerroService service = new PerroService();
+        service.crearPerros();
         service.menuPerros();
     }
-    
+
 }

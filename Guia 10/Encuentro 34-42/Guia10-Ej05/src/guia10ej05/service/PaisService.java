@@ -32,13 +32,15 @@ public class PaisService {
         do {
             Pais pais = new Pais();
 
-            System.out.println("Ingrese nombre del país: ");
+            System.out.println("Ingrese nombre del país.\n> ");
             pais.setNombre(input.next());
 
             paises.add(pais);
 
-            System.out.println("¿Desea ingresar otro país? s/n");
-            opc = input.next();
+            do {
+                System.out.println("¿Desea ingresar otro país? s/n\n> ");
+                opc = input.next();
+            } while (!opc.equalsIgnoreCase("s") && !opc.equalsIgnoreCase("n"));
 
         } while (!opc.equalsIgnoreCase("n"));
     }
@@ -56,7 +58,7 @@ public class PaisService {
 
         Iterator<Pais> it = paises.iterator();
         boolean paisEncontrado = false;
-        System.out.println("Ingrese país a eliminar: ");
+        System.out.println("Ingrese país a eliminar.\n> ");
         String nombre = input.next();
         while (it.hasNext()) {
             if (it.next().getNombre().equalsIgnoreCase(nombre)) {
