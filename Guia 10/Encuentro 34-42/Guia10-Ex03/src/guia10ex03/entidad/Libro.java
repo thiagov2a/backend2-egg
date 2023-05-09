@@ -5,32 +5,26 @@
  */
 package guia10ex03.entidad;
 
+import java.util.Objects;
+
 /**
  *
  * @author Thiago
  */
-public class Libro {
-    
+public class Libro implements Comparable<Libro> {
+
     private String titulo;
     private String autor;
-    private int numEjem;
+    private int numEjemplares;
     private int numEjemPrestados;
 
     public Libro() {
     }
 
-    public Libro(String titulo, String autor, int numEjem, int numEjemPrestados) {
+    public Libro(String titulo, String autor, int numEjemplares, int numEjemPrestados) {
         this.titulo = titulo;
         this.autor = autor;
-        this.numEjem = numEjem;
-        this.numEjemPrestados = numEjemPrestados;
-    }
-
-    public int getNumEjemPrestados() {
-        return numEjemPrestados;
-    }
-
-    public void setNumEjemPrestados(int numEjemPrestados) {
+        this.numEjemplares = numEjemplares;
         this.numEjemPrestados = numEjemPrestados;
     }
 
@@ -50,17 +44,64 @@ public class Libro {
         this.autor = autor;
     }
 
-    public int getNumEjem() {
-        return numEjem;
+    public int getNumEjemplares() {
+        return numEjemplares;
     }
 
-    public void setNumEjem(int numEjem) {
-        this.numEjem = numEjem;
+    public void setNumEjemplares(int numEjemplares) {
+        this.numEjemplares = numEjemplares;
+    }
+
+    public int getNumEjemPrestados() {
+        return numEjemPrestados;
+    }
+
+    public void setNumEjemPrestados(int numEjemPrestados) {
+        this.numEjemPrestados = numEjemPrestados;
     }
 
     @Override
     public String toString() {
-        return "Titulo: " + titulo + " | Autor: " + autor + " | Ejemplares: " + numEjem + " | Prestados: " + numEjemPrestados;
+        return "Titulo: " + titulo + " | Autor: " + autor + " | Ejemplares: " + numEjemplares + " | Prestados: " + numEjemPrestados;
     }
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 41 * hash + Objects.hashCode(this.titulo);
+        hash = 41 * hash + Objects.hashCode(this.autor);
+        hash = 41 * hash + this.numEjemplares;
+        hash = 41 * hash + this.numEjemPrestados;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Libro other = (Libro) obj;
+        if (this.numEjemplares != other.numEjemplares) {
+            return false;
+        }
+        if (this.numEjemPrestados != other.numEjemPrestados) {
+            return false;
+        }
+        if (!Objects.equals(this.titulo, other.titulo)) {
+            return false;
+        }
+        return Objects.equals(this.autor, other.autor);
+    }
+
+    @Override
+    public int compareTo(Libro t) {
+        return this.titulo.compareToIgnoreCase(t.getTitulo());
+    }
+
 }
