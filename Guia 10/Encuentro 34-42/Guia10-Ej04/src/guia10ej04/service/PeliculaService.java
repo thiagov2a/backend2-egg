@@ -25,8 +25,8 @@ public class PeliculaService {
     private final List<Pelicula> peliculas;
 
     public PeliculaService() {
-        this.peliculas = new ArrayList();
         this.input = new Scanner(System.in).useDelimiter("\n");
+        this.peliculas = new ArrayList();
     }
 
     public void crearPeliculas() {

@@ -62,7 +62,7 @@ public class Libro implements Comparable<Libro> {
 
     @Override
     public String toString() {
-        return "Titulo: " + titulo + " | Autor: " + autor + " | Ejemplares: " + numEjemplares + " | Prestados: " + numEjemPrestados;
+        return "Titulo: " + titulo + " | Autor: " + autor + " | Disponibles: " + numEjemplares + " | Prestados: " + numEjemPrestados;
     }
 
     @Override

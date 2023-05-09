@@ -3,23 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package guia10ej03;
-
-import guia10ej03.service.AlumnoService;
+package guia10ex02;
 
 /**
  *
  * @author Thiago
  */
-public class Guia10Ej03Main {
+public class Guia10Ex02Main {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        AlumnoService service = new AlumnoService();
-        service.mostrarMenu();
+        // TODO code application logic here
     }
-
+    
 }
