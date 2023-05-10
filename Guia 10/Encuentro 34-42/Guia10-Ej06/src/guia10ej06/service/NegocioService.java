@@ -66,6 +66,7 @@ public class NegocioService {
                 if (aux.getKey().equalsIgnoreCase(nombre)) {
                     productoEncontrado = true;
                     productos.remove(aux.getKey());
+                    break;
                 }
             }
             if (productoEncontrado) {
