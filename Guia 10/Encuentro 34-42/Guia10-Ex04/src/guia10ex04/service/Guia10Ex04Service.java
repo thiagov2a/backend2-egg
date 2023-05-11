@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
- *
  * @author Thiago
  */
 public class Guia10Ex04Service {
