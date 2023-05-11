@@ -24,21 +24,22 @@ public class Guia10Ex04Service {
     }
 
     public void agregarCodigo() {
-        System.out.print("\nIngresar Codigo Postal.\n> ");
+        System.out.print("\nIngrese código postal.\n> ");
         Integer codigo = input.nextInt();
 
-        System.out.print("Ingresar Ciudad.\n> ");
+        System.out.print("Ingrese ciudad.\n> ");
         String ciudad = input.next();
 
         codigos.put(codigo, ciudad);
     }
 
     public void crearCodigos() {
+        System.out.print("CREAR CÓDIGOS POSTALES");
         String opc;
         do {
             agregarCodigo();
             do {
-                System.out.print("\n¿Desea ingresar otro codigo postal? s/n\n> ");
+                System.out.print("\n¿Desea ingresar otro código postal? s/n\n> ");
                 opc = input.next();
             } while (!opc.equalsIgnoreCase("s") && !opc.equalsIgnoreCase("n"));
 
@@ -47,7 +48,7 @@ public class Guia10Ex04Service {
 
     public void mostrarCodigos() {
         if (!codigos.isEmpty()) {
-            System.out.println("\nCODIGOS POSTALES Y CIUDADES");
+            System.out.println("\nCÓDIGOS POSTALES Y CIUDADES");
             for (Map.Entry<Integer, String> aux : codigos.entrySet()) {
                 System.out.println("CP: " + aux.getKey() + " | Ciudad: " + aux.getValue() + ".");
             }
@@ -58,7 +59,7 @@ public class Guia10Ex04Service {
 
     public void mostrarCiudad() {
         if (!codigos.isEmpty()) {
-            System.out.print("\nIngrese Codigo Postal para saber su ciudad.\n> ");
+            System.out.print("\nIngrese Código Postal para saber su ciudad.\n> ");
             Integer codigo = input.nextInt();
 
             boolean codigoEsta = false;
@@ -70,14 +71,11 @@ public class Guia10Ex04Service {
                 }
             }
             if (!codigoEsta) {
-                System.out.println("\nNo se encuentra una ciudad con el codigo postal.");
+                System.out.println("\nNo se encuentra una ciudad con el Código Postal.");
             }
         } else {
             System.out.println("\nLa lista está vacía.");
         }
-//        codigos.forEach((Integer t, String u) -> {if (t.equals(codigo)) System.out.println("La ciudad del código " + codigo + " es: " + u);});
-//        codigos.forEach((Integer t, String u) -> { if (t.equals(codigo)) System.out.println("La ciudad del código " + codigo + " es: " + u); else System.out.println("No se encontró ninguna ciudad para el código " + codigo); });
-//        codigos.forEach((Integer t, String u) -> System.out.println(t.equals(codigo) ? "La ciudad del código " + codigo + " es: " + u : "No se encontró ninguna ciudad para el código " + codigo));
     }
 
     public void eliminarCodigo() {
