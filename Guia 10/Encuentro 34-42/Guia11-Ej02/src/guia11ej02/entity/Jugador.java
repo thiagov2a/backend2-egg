@@ -23,7 +23,7 @@ public class Jugador {
     public boolean disparo(RevolverDeAgua revolver) {
         revolver.siguienteChorro();
         if (revolver.mojar()) {
-            this.mojado = true;
+            mojado = true;
             return true;
         } else {
             return false;

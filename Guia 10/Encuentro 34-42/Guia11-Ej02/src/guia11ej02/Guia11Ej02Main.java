@@ -4,6 +4,8 @@
  */
 package guia11ej02;
 
+import guia11ej02.service.JuegoService;
+
 /**
  *
  * @author Thiago
@@ -14,7 +16,8 @@ public class Guia11Ej02Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        JuegoService service = new JuegoService();
+        service.jugarRuletaRusa();
     }
     
 }
