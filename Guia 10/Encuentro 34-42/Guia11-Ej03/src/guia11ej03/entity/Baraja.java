@@ -4,7 +4,7 @@
  */
 package guia11ej03.entity;
 
-import guia11ej03.enumeraciones.Palo;
+import guia11ej03.enums.Palo;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
