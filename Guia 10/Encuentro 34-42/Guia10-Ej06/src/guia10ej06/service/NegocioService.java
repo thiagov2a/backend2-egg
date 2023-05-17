@@ -124,6 +124,7 @@ public class NegocioService {
                 }
             } else {
                 System.out.println("\nOpción inválida. Intente nuevamente.");
+                input.next();
             }
         } while (opc != 5);
     }

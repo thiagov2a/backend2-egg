@@ -132,6 +132,7 @@ public class Guia10Ex04Service {
                 }
             } else {
                 System.out.println("\nOpción incorrecta. Intente nuevamente.");
+                input.next();
             }
         } while (opc != 4);
     }

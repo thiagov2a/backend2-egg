@@ -13,13 +13,13 @@ import java.util.Scanner;
  *
  * @author Thiago
  */
-public class Service {
+public class Guia10Ex01Service {
 
     private final Scanner input;
     private final List numeros;
     private double suma;
     
-    public Service() {
+    public Guia10Ex01Service() {
         this.input = new Scanner(System.in).useDelimiter("\n");
         this.numeros = new ArrayList();
         this.suma = 0;

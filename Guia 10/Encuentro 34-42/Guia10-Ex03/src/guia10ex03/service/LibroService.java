@@ -170,6 +170,7 @@ public class LibroService {
                 }
             } else {
                 System.out.println("\nOpción inválida. Intente nuevamente.");
+                input.next();
             }
         } while (opc != 4);
     }

@@ -5,7 +5,7 @@
  */
 package guia10ex01;
 
-import guia10ex01.service.Service;
+import guia10ex01.service.Guia10Ex01Service;
 
 /**
  *
@@ -17,7 +17,7 @@ public class Guia10Ex01Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Service service = new Service();
+        Guia10Ex01Service service = new Guia10Ex01Service();
         service.crearLista();
         service.mostrarLista();
     }

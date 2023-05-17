@@ -27,16 +27,20 @@ public class Baraja {
     }
 
     public void crearBaraja() {
-        int[] num = {1, 2, 3, 4, 5, 6, 7, 10, 11, 12};
+        Integer[] num = {1, 2, 3, 4, 5, 6, 7, 10, 11, 12};
         for (Palo aux : Palo.values()) {
-            for (int i : num) {
+            for (Integer i : num) {
                 baraja.add(new Carta(i, aux.getValor()));
             }
         }
     }
 
     public void barajar() {
-        Collections.shuffle(baraja);
+        if (!baraja.isEmpty()) {
+            Collections.shuffle(baraja);
+        } else {
+            System.out.println("\nLa baraja está vacía.");
+        }
     }
 
     public Carta siguienteCarta() {
@@ -54,21 +58,25 @@ public class Baraja {
     }
 
     public void darCartas() {
-        System.out.print("\nIngrese número de cartas a dar.\n> ");
-        int num = input.nextInt();
-        if (baraja.size() >= num) {
-            System.out.println("");
-            for (int i = 0; i < num; i++) {
-                monton.add(siguienteCarta());
+        if (!baraja.isEmpty()) {
+            System.out.print("\nIngrese número de cartas a dar.\n> ");
+            int num = input.nextInt();
+            if (baraja.size() >= num) {
+                System.out.println("\nCARTAS DADAS");
+                for (int i = 0; i < num; i++) {
+                    monton.add(siguienteCarta());
+                }
+            } else {
+                cartasDisponibles();
             }
         } else {
-            cartasDisponibles();
+            System.out.println("\nLa baraja está vacía.");
         }
     }
 
     public void cartasMonton() {
         if (!monton.isEmpty()) {
-            System.out.println("");
+            System.out.println("\nMONTÓN");
             for (Carta carta : monton) {
                 System.out.println(carta);
             }
@@ -79,7 +87,7 @@ public class Baraja {
 
     public void mostrarBaraja() {
         if (!baraja.isEmpty()) {
-            System.out.println("");
+            System.out.println("\nBARAJA");
             for (Carta carta : baraja) {
                 System.out.println(carta);
             }
@@ -127,6 +135,7 @@ public class Baraja {
                 }
             } else {
                 System.out.println("\nOpción invalida. Intente nuevamente.");
+                input.next();
             }
         } while (opc != 6);
     }

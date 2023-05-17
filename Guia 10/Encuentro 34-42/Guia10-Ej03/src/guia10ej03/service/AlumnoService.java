@@ -127,6 +127,7 @@ public class AlumnoService {
                 }
             } else {
                 System.out.println("\nOpción incorrecta. Intente nuevamente.");
+                input.next();
             }
         } while (opc != 4);
     }
