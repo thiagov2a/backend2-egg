@@ -2,7 +2,7 @@
 
 <ClassDiagram name="Guia11Ex02">
   <ClassDiagramComponents>
-    <Class name="Cine" package="" visibility="public" xPosition="209.0" yPosition="164.0">
+    <Class name="Cine" package="" visibility="public" xPosition="209.0" yPosition="154.0">
       <Fields>
         <Field name="asientos" type="Asiento[][]" visibility="private"/>
         <Field name="pelicula" type="Pelicula" visibility="private"/>
@@ -29,7 +29,7 @@
       <Constructors/>
       <Methods/>
     </Class>
-    <Class name="Espectador" package="" visibility="public" xPosition="660.0" yPosition="164.0">
+    <Class name="Espectador" package="" visibility="public" xPosition="660.0" yPosition="154.0">
       <Fields>
         <Field name="nombre" type="String" visibility="private"/>
         <Field name="edad" type="Integer" visibility="private"/>
@@ -38,7 +38,7 @@
       <Constructors/>
       <Methods/>
     </Class>
-    <Enum name="Columna" package="" visibility="public" xPosition="437.0" yPosition="366.0">
+    <Enum name="Columna" package="" visibility="public" xPosition="439.0" yPosition="366.0">
       <Literals>
         <Literal name="A"/>
         <Literal name="B"/>
@@ -51,8 +51,8 @@
   </ClassDiagramComponents>
   <ClassDiagramRelations>
     <HasRelation name="tiene" source="Cine" target="Asiento" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="tiene" source="Asiento" target="Espectador" type="Default" sourceCardinality="0..1" targetCardinality="0..*" collectionType="List"/>
     <HasRelation name="tiene" source="Cine" target="Pelicula" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
     <HasRelation name="tiene" source="Asiento" target="Columna" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
-    <HasRelation name="tiene" source="Asiento" target="Espectador" type="Default" sourceCardinality="0..1" targetCardinality="0..*" collectionType="List"/>
   </ClassDiagramRelations>
 </ClassDiagram>
