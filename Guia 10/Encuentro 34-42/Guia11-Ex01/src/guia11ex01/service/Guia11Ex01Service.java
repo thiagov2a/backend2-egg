@@ -86,7 +86,7 @@ public class Guia11Ex01Service {
     }
 
     public void listaPerros() {
-        System.out.print("LISTA DE PERROS");
+        System.out.print("PERROS EN ADOPCIÓN");
         String opc;
         do {
             agregarPerro();
@@ -99,7 +99,7 @@ public class Guia11Ex01Service {
     }
 
     public void listaPersonas() {
-        System.out.print("LISTA DE PERSONAS");
+        System.out.print("\nPERSONAS ADOPTANTES");
         String opc;
         do {
             agregarPersona();

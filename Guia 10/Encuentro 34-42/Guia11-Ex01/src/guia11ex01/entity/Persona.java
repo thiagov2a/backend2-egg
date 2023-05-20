@@ -22,6 +22,7 @@ public class Persona {
     private List<Perro> perros;
 
     public Persona() {
+        this.perros = new ArrayList<>();
     }
 
     public Persona(String nombre, String apellido, Integer edad, Integer documento, Sexo sexo) {
@@ -30,7 +31,6 @@ public class Persona {
         this.edad = edad;
         this.documento = documento;
         this.sexo = sexo;
-        this.perros = new ArrayList<>();
     }
 
     public String getNombre() {
@@ -87,7 +87,7 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Nombre: " + nombre + " " + apellido + " | Edad: " + edad + " | Documento: " + documento + " | Sexo: " + sexo + "\nPerro/os: " + perros;
+        return "Nombre: " + nombre + " " + apellido + " | Edad: " + edad + " | Documento: " + documento + " | Sexo: " + sexo.getValor() + "\nPerro/os: " + perros;
     }
 
 }
