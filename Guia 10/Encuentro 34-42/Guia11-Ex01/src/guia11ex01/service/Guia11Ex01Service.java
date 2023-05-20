@@ -145,23 +145,33 @@ public class Guia11Ex01Service {
                     break;
                 }
             }
+            
+            if (adoptante != null) {
+                if (!perros.isEmpty()) {
+                    mostrarPerros();
+                    System.out.print("\nIngrese nombre de perro a adoptar.\n> ");
+                    String nombre = input.next();
 
-            if (!perros.isEmpty()) {
-                mostrarPerros();
-                System.out.print("\nIngrese nombre de perro a adoptar.\n> ");
-                String nombre = input.next();
-
-                Perro adoptado = null;
-                for (Perro perro : perros) {
-                    if (perro.getNombre().equalsIgnoreCase(nombre)) {
-                        adoptado = perro;
-                        perros.remove(perro);
-                        break;
+                    Perro adoptado = null;
+                    for (Perro perro : perros) {
+                        if (perro.getNombre().equalsIgnoreCase(nombre)) {
+                            adoptado = perro;
+                            break;
+                        }
                     }
+
+                    if (adoptado != null) {
+                        perros.remove(adoptado);
+                        adoptante.addPerro(adoptado);
+                        System.out.println("\nEl perro ha sido adoptado exitosamente.");
+                    } else {
+                        System.out.println("\nNo se encontró ningún perro con ese nombre.");
+                    }
+                } else {
+                    System.out.println("\nNo hay perros en adopción.");
                 }
-                adoptante.setPerro(adoptado);
             } else {
-                System.out.println("\nNo hay perros en adopción.");
+                System.out.println("\nNo se encontró ninguna persona con ese número de documento.");
             }
         } else {
             System.out.println("\nNo hay personas adoptantes.");

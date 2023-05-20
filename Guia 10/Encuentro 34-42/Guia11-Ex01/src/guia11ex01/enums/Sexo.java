@@ -10,10 +10,10 @@ package guia11ex01.enums;
  */
 public enum Sexo {
 
-    F(1, "Femenino"), M(2, "Masculino"), O(3, "Otro");
+    FEMENINO(1, "Femenino"), MASCULINO(2, "Masculino"), OTRO(3, "Otro");
 
-    private Integer codigo;
-    private String valor;
+    private final Integer codigo;
+    private final String valor;
 
     private Sexo(Integer codigo, String valor) {
         this.codigo = codigo;

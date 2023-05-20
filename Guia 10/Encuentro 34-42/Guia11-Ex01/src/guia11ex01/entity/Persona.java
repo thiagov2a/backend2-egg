@@ -13,7 +13,7 @@ import java.util.List;
  * @author Thiago
  */
 public class Persona {
-    
+
     private String nombre;
     private String apellido;
     private Integer edad;
@@ -77,7 +77,11 @@ public class Persona {
         return perros;
     }
 
-    public void setPerro(Perro perro) {
+    public void setPerros(List<Perro> perros) {
+        this.perros = perros;
+    }
+
+    public void addPerro(Perro perro) {
         this.perros.add(perro);
     }
 
@@ -85,5 +89,5 @@ public class Persona {
     public String toString() {
         return "Nombre: " + nombre + " " + apellido + " | Edad: " + edad + " | Documento: " + documento + " | Sexo: " + sexo + "\nPerro/os: " + perros;
     }
-    
+
 }

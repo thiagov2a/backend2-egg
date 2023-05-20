@@ -12,8 +12,8 @@ public enum Raza {
 
     LABRADOR(1, "Labrador"), PASTOR_ALEMAN(2, "Pastor Alemán"), BULLDOG(3, "Bulldog"), GOLDEN(4, "Golden"), OTRO(5, "Otro");
 
-    private Integer codigo;
-    private String valor;
+    private final Integer codigo;
+    private final String valor;
 
     private Raza(Integer codigo, String valor) {
         this.codigo = codigo;
