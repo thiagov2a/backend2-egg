@@ -4,6 +4,8 @@
  */
 package guia11ex01;
 
+import guia11ex01.service.Guia11Ex01Service;
+
 /**
  *
  * @author Thiago
@@ -14,7 +16,8 @@ public class Guia11Ex01Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Guia11Ex01Service service = new Guia11Ex01Service();
+        service.mostrarMenu();
     }
     
 }
