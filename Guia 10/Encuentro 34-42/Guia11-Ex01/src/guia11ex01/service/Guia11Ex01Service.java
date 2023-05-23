@@ -38,21 +38,31 @@ public class Guia11Ex01Service {
         System.out.print("Ingrese tamano del perro.\n> ");
         Double tamano = validarDouble();
 
+        Raza raza = seleccionarRaza();
+        perros.add(new Perro(nombre, edad, tamano, raza));
+    }
+
+    private Raza seleccionarRaza() {
         Raza raza = null;
         while (raza == null) {
-            System.out.println("Ingrese raza del perro.");
+            System.out.println("Ingrese raza del perro:");
             for (Raza aux : Raza.values()) {
                 System.out.println(aux.getCodigo() + ". " + aux.getValor());
             }
             System.out.print("> ");
             Integer seleccion = validarEntero();
-            for (Raza aux : Raza.values()) {
-                if (aux.getCodigo().equals(seleccion)) {
-                    raza = aux;
-                }
+            raza = obtenerRazaSeleccionada(seleccion);
+        }
+        return raza;
+    }
+
+    private Raza obtenerRazaSeleccionada(Integer seleccion) {
+        for (Raza aux : Raza.values()) {
+            if (aux.getCodigo().equals(seleccion)) {
+                return aux;
             }
         }
-        perros.add(new Perro(nombre, edad, tamano, raza));
+        return null;
     }
 
     public void agregarPersona() {
@@ -68,21 +78,31 @@ public class Guia11Ex01Service {
         System.out.print("Ingrese documento de la persona.\n> ");
         Integer documento = validarEntero();
 
+        Sexo sexo = seleccionarSexo();
+        personas.add(new Persona(nombre, apellido, edad, documento, sexo));
+    }
+
+    private Sexo seleccionarSexo() {
         Sexo sexo = null;
         while (sexo == null) {
-            System.out.println("Ingrese sexo de la persona.");
+            System.out.println("Ingrese sexo de la persona:");
             for (Sexo aux : Sexo.values()) {
                 System.out.println(aux.getCodigo() + ". " + aux.getValor());
             }
             System.out.print("> ");
             Integer seleccion = validarEntero();
-            for (Sexo aux : Sexo.values()) {
-                if (aux.getCodigo().equals(seleccion)) {
-                    sexo = aux;
-                }
+            sexo = obtenerSexoSeleccionado(seleccion);
+        }
+        return sexo;
+    }
+
+    private Sexo obtenerSexoSeleccionado(Integer seleccion) {
+        for (Sexo aux : Sexo.values()) {
+            if (aux.getCodigo().equals(seleccion)) {
+                return aux;
             }
         }
-        personas.add(new Persona(nombre, apellido, edad, documento, sexo));
+        return null;
     }
 
     public void listaPerros() {
@@ -135,30 +155,18 @@ public class Guia11Ex01Service {
 
     public void adoptarPerro() {
         if (!personas.isEmpty()) {
-            System.out.print("\nIngrese su numero de documento.\n> ");
+            System.out.print("\nIngrese su número de documento:\n> ");
             Integer documento = validarEntero();
 
-            Persona adoptante = null;
-            for (Persona aux : personas) {
-                if (aux.getDocumento().equals(documento)) {
-                    adoptante = aux;
-                    break;
-                }
-            }
+            Persona adoptante = buscarPersonaPorDocumento(documento);
 
             if (adoptante != null) {
                 if (!perros.isEmpty()) {
                     mostrarPerros();
-                    System.out.print("\nIngrese nombre de perro a adoptar.\n> ");
+                    System.out.print("\nIngrese nombre del perro a adoptar:\n> ");
                     String nombre = validarString();
 
-                    Perro adoptado = null;
-                    for (Perro perro : perros) {
-                        if (perro.getNombre().equalsIgnoreCase(nombre)) {
-                            adoptado = perro;
-                            break;
-                        }
-                    }
+                    Perro adoptado = buscarPerroPorNombre(nombre);
 
                     if (adoptado != null) {
                         perros.remove(adoptado);
@@ -176,6 +184,24 @@ public class Guia11Ex01Service {
         } else {
             System.out.println("\nNo hay personas adoptantes.");
         }
+    }
+
+    private Persona buscarPersonaPorDocumento(Integer documento) {
+        for (Persona aux : personas) {
+            if (aux.getDocumento().equals(documento)) {
+                return aux;
+            }
+        }
+        return null;
+    }
+
+    private Perro buscarPerroPorNombre(String nombre) {
+        for (Perro perro : perros) {
+            if (perro.getNombre().equalsIgnoreCase(nombre)) {
+                return perro;
+            }
+        }
+        return null;
     }
 
     public void mostrarMenu() {
@@ -231,7 +257,8 @@ public class Guia11Ex01Service {
     private double validarDouble() {
         while (true) {
             try {
-                return Double.parseDouble(input.next());
+                String entrada = input.next().replace(",", ".");
+                return Double.parseDouble(entrada);
             } catch (NumberFormatException e) {
                 System.out.print("Ingrese un número válido.\n> ");
             }
