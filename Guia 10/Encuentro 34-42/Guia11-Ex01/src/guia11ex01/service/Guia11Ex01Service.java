@@ -30,13 +30,13 @@ public class Guia11Ex01Service {
 
     public void agregarPerro() {
         System.out.print("\nIngrese nombre del perro.\n> ");
-        String nombre = input.next();
+        String nombre = validarString();
 
         System.out.print("Ingrese edad del perro.\n> ");
-        Integer edad = input.nextInt();
+        Integer edad = validarEntero();
 
         System.out.print("Ingrese tamano del perro.\n> ");
-        Double tamano = input.nextDouble();
+        Double tamano = validarDouble();
 
         Raza raza = null;
         while (raza == null) {
@@ -45,7 +45,7 @@ public class Guia11Ex01Service {
                 System.out.println(aux.getCodigo() + ". " + aux.getValor());
             }
             System.out.print("> ");
-            Integer seleccion = input.nextInt();
+            Integer seleccion = validarEntero();
             for (Raza aux : Raza.values()) {
                 if (aux.getCodigo().equals(seleccion)) {
                     raza = aux;
@@ -57,16 +57,16 @@ public class Guia11Ex01Service {
 
     public void agregarPersona() {
         System.out.print("\nIngrese nombre de la persona.\n> ");
-        String nombre = input.next();
+        String nombre = validarString();
 
         System.out.print("Ingrese apellido de la persona.\n> ");
-        String apellido = input.next();
+        String apellido = validarString();
 
         System.out.print("Ingrese edad de la persona.\n> ");
-        Integer edad = input.nextInt();
+        Integer edad = validarEntero();
 
         System.out.print("Ingrese documento de la persona.\n> ");
-        Integer documento = input.nextInt();
+        Integer documento = validarEntero();
 
         Sexo sexo = null;
         while (sexo == null) {
@@ -75,7 +75,7 @@ public class Guia11Ex01Service {
                 System.out.println(aux.getCodigo() + ". " + aux.getValor());
             }
             System.out.print("> ");
-            Integer seleccion = input.nextInt();
+            Integer seleccion = validarEntero();
             for (Sexo aux : Sexo.values()) {
                 if (aux.getCodigo().equals(seleccion)) {
                     sexo = aux;
@@ -92,7 +92,7 @@ public class Guia11Ex01Service {
             agregarPerro();
             do {
                 System.out.print("\n¿Desea ingresar otro perro? s/n\n> ");
-                opc = input.next();
+                opc = validarString();
             } while (!opc.equalsIgnoreCase("s") && !opc.equalsIgnoreCase("n"));
 
         } while (!opc.equalsIgnoreCase("n"));
@@ -105,7 +105,7 @@ public class Guia11Ex01Service {
             agregarPersona();
             do {
                 System.out.print("\n¿Desea ingresar otro persona? s/n\n> ");
-                opc = input.next();
+                opc = validarString();
             } while (!opc.equalsIgnoreCase("s") && !opc.equalsIgnoreCase("n"));
 
         } while (!opc.equalsIgnoreCase("n"));
@@ -136,7 +136,7 @@ public class Guia11Ex01Service {
     public void adoptarPerro() {
         if (!personas.isEmpty()) {
             System.out.print("\nIngrese su numero de documento.\n> ");
-            Integer documento = input.nextInt();
+            Integer documento = validarEntero();
 
             Persona adoptante = null;
             for (Persona aux : personas) {
@@ -150,7 +150,7 @@ public class Guia11Ex01Service {
                 if (!perros.isEmpty()) {
                     mostrarPerros();
                     System.out.print("\nIngrese nombre de perro a adoptar.\n> ");
-                    String nombre = input.next();
+                    String nombre = validarString();
 
                     Perro adoptado = null;
                     for (Perro perro : perros) {
@@ -181,7 +181,7 @@ public class Guia11Ex01Service {
     public void mostrarMenu() {
         listaPerros();
         listaPersonas();
-        int opc = 0;
+        int opc;
         do {
             System.out.print("\nMENÚ\n"
                     + "1. Agregar perro\n"
@@ -191,36 +191,60 @@ public class Guia11Ex01Service {
                     + "5. Mostrar adoptantes\n"
                     + "6. Salir\n"
                     + "> ");
-            if (input.hasNextInt()) {
-                opc = input.nextInt();
-                switch (opc) {
-                    case 1:
-                        agregarPerro();
-                        break;
-                    case 2:
-                        agregarPersona();
-                        break;
-                    case 3:
-                        adoptarPerro();
-                        break;
-                    case 4:
-                        mostrarPerros();
-                        break;
-                    case 5:
-                        mostrarPersonas();
-                        break;
-                    case 6:
-                        System.out.println("¡Hasta pronto!");
-                        break;
-                    default:
-                        System.out.println("Opción invalida. Intente nuevamente.");
-                        break;
-                }
-            } else {
-                System.out.println("Opción invalida. Intente nuevamente.");
-                input.next();
+            opc = validarEntero();
+            switch (opc) {
+                case 1:
+                    agregarPerro();
+                    break;
+                case 2:
+                    agregarPersona();
+                    break;
+                case 3:
+                    adoptarPerro();
+                    break;
+                case 4:
+                    mostrarPerros();
+                    break;
+                case 5:
+                    mostrarPersonas();
+                    break;
+                case 6:
+                    System.out.println("¡Hasta pronto!");
+                    break;
+                default:
+                    System.out.println("Opción invalida. Intente nuevamente.");
+                    break;
             }
         } while (opc != 6);
+    }
+
+    private int validarEntero() {
+        while (true) {
+            try {
+                return Integer.parseInt(input.next());
+            } catch (NumberFormatException e) {
+                System.out.print("Ingrese un número entero válido.\n> ");
+            }
+        }
+    }
+
+    private double validarDouble() {
+        while (true) {
+            try {
+                return Double.parseDouble(input.next());
+            } catch (NumberFormatException e) {
+                System.out.print("Ingrese un número válido.\n> ");
+            }
+        }
+    }
+
+    private String validarString() {
+        String entrada = input.next();
+        while (entrada.isEmpty()) {
+            System.out.print("Ingrese un valor válido.\n> ");
+            entrada = input.next();
+        }
+        return entrada;
     }
 
 }
