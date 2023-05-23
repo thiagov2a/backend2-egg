@@ -145,7 +145,7 @@ public class Guia11Ex01Service {
                     break;
                 }
             }
-            
+
             if (adoptante != null) {
                 if (!perros.isEmpty()) {
                     mostrarPerros();
@@ -162,7 +162,7 @@ public class Guia11Ex01Service {
 
                     if (adoptado != null) {
                         perros.remove(adoptado);
-                        adoptante.addPerro(adoptado);
+                        adoptante.setPerros(adoptado);
                         System.out.println("\nEl perro ha sido adoptado exitosamente.");
                     } else {
                         System.out.println("\nNo se encontró ningún perro con ese nombre.");
