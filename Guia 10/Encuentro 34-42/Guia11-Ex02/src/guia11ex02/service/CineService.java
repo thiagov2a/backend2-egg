@@ -8,7 +8,9 @@ import guia11ex02.entity.Asiento;
 import guia11ex02.entity.Espectador;
 import guia11ex02.entity.Pelicula;
 import guia11ex02.entity.Sala;
+import guia11ex02.enums.Apellido;
 import guia11ex02.enums.Columna;
+import guia11ex02.enums.Nombre;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -72,20 +74,28 @@ public class CineService {
     public void generarEspectadores() {
         int cantidad = (int) (Math.random() * (filas * columnas));
         System.out.println(cantidad);
-        
-//        System.out.print("Ingrese nombre de la persona.\n> ");
-//        String nombre = validarString();
-//        
-//        System.out.print("Ingrese edad de la persona.\n> ");
-//        Integer edad = validarEntero();
-//        
-//        System.out.print("Ingrese dinero de la persona.\n> ");
-//        Double dinero = validarDouble();
-//        
-//        espectadores.add(new Espectador(nombre, edad, dinero));
+
+        for (int i = 0; i < cantidad; i++) {
+            String nombre = generarNombre();
+            Integer edad = (int) (Math.random() * 80) + 1;
+            Double dinero = Math.random() * 5000;
+
+            espectadores.add(new Espectador(nombre, edad, dinero));
+        }
+        for (Espectador espectador : espectadores) {
+            System.out.println(espectador);
+        }
     }
-    
-    
+
+    private String generarNombre() {
+        int indiceNombre = (int) (Math.random() * Nombre.values().length);
+        String nombre = Nombre.values()[indiceNombre].toString();
+
+        int indiceApellido = (int) (Math.random() * Apellido.values().length);
+        String apellido = Apellido.values()[indiceApellido].toString();
+
+        return nombre + " " + apellido;
+    }
 
     private int validarEntero() {
         while (true) {
