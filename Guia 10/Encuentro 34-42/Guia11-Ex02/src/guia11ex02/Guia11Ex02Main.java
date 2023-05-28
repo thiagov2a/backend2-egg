@@ -17,7 +17,7 @@ public class Guia11Ex02Main {
      */
     public static void main(String[] args) {
         CineService service = new CineService();
-        service.crearSala();
+        service.generarEspectadores();
     }
     
 }

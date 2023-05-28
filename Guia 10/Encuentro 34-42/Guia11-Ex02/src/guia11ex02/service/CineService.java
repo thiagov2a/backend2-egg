@@ -18,7 +18,7 @@ import java.util.Scanner;
  * @author Thiago
  */
 public class CineService {
-    
+
     private final int filas = 8;
     private final int columnas = 6;
 
@@ -35,44 +35,58 @@ public class CineService {
     public void crearSala() {
         Asiento[][] asientos = generarAsientos();
         Pelicula pelicula = generarPelicula();
-        
+
         System.out.print("Ingrese precio de la sala.\n> $");
         Double precio = validarDouble();
-        
+
         salas.add(new Sala(asientos, pelicula, precio));
     }
-    
+
     private Asiento[][] generarAsientos() {
         Asiento[][] asientos = new Asiento[filas][columnas];
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
-                String ubicacion = (columnas - i) + Columna.values()[j].toString();
+                String ubicacion = (filas - i) + Columna.values()[j].toString();
                 asientos[i][j] = new Asiento(ubicacion);
             }
         }
         return asientos;
     }
-    
+
     private Pelicula generarPelicula() {
         System.out.print("Ingrese titulo de la pelicula.\n> ");
         String titulo = validarString();
-        
+
         System.out.print("Ingrese duracion de la pelicula en horas.\n> ");
         Integer duracion = validarEntero();
-        
+
         System.out.print("Ingresar edad minima de la pelicula.\n> ");
         Integer edadMinima = validarEntero();
-        
+
         System.out.print("Ingrese nombre del director de la pelicula.\n> ");
         String director = validarString();
-        
+
         return new Pelicula(titulo, duracion, edadMinima, director);
     }
-    
+
     public void generarEspectadores() {
+        int cantidad = (int) (Math.random() * (filas * columnas));
+        System.out.println(cantidad);
         
+//        System.out.print("Ingrese nombre de la persona.\n> ");
+//        String nombre = validarString();
+//        
+//        System.out.print("Ingrese edad de la persona.\n> ");
+//        Integer edad = validarEntero();
+//        
+//        System.out.print("Ingrese dinero de la persona.\n> ");
+//        Double dinero = validarDouble();
+//        
+//        espectadores.add(new Espectador(nombre, edad, dinero));
     }
     
+    
+
     private int validarEntero() {
         while (true) {
             try {
