@@ -5,6 +5,7 @@
 package guia11ex02.service;
 
 import guia11ex02.entity.Asiento;
+import guia11ex02.entity.Espectador;
 import guia11ex02.entity.Pelicula;
 import guia11ex02.entity.Sala;
 import guia11ex02.enums.Columna;
@@ -17,13 +18,18 @@ import java.util.Scanner;
  * @author Thiago
  */
 public class CineService {
+    
+    private final int filas = 8;
+    private final int columnas = 6;
 
     private final Scanner input;
     private final List<Sala> salas;
+    private final List<Espectador> espectadores;
 
     public CineService() {
         this.input = new Scanner(System.in).useDelimiter("\n");
         this.salas = new ArrayList<>();
+        this.espectadores = new ArrayList<>();
     }
 
     public void crearSala() {
@@ -37,10 +43,10 @@ public class CineService {
     }
     
     private Asiento[][] generarAsientos() {
-        Asiento[][] asientos = new Asiento[8][6];
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 6; j++) {
-                String ubicacion = (8 - i) + Columna.values()[j].toString();
+        Asiento[][] asientos = new Asiento[filas][columnas];
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                String ubicacion = (columnas - i) + Columna.values()[j].toString();
                 asientos[i][j] = new Asiento(ubicacion);
             }
         }
@@ -63,7 +69,9 @@ public class CineService {
         return new Pelicula(titulo, duracion, edadMinima, director);
     }
     
-    
+    public void generarEspectadores() {
+        
+    }
     
     private int validarEntero() {
         while (true) {

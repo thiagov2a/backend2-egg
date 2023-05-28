@@ -235,10 +235,10 @@ public class Guia11Ex01Service {
                     mostrarPersonas();
                     break;
                 case 6:
-                    System.out.println("¡Hasta pronto!");
+                    System.out.println("\n¡Hasta pronto!");
                     break;
                 default:
-                    System.out.println("Opción invalida. Intente nuevamente.");
+                    System.out.println("\nOpción invalida. Intente nuevamente.");
                     break;
             }
         } while (opc != 6);

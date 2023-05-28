@@ -49,7 +49,7 @@ public class Sala {
 
     @Override
     public String toString() {
-        return "Sala{" + "asientos=" + asientos + ", pelicula=" + pelicula + ", precio=" + precio + '}';
+        return "Pelicula: " + pelicula + " | Precio: " + precio;
     }
 
 }
