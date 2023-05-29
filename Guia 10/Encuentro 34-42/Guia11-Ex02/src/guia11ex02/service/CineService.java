@@ -145,7 +145,7 @@ public class CineService {
             int numSala = validarEntero();
 
             while (numSala <= 0 || numSala > salas.size()) {
-                System.out.println("Número de sala inválido. Por favor, ingrese un número de sala válido.");
+                System.out.println("Número de sala inválido. Por favor, ingrese un número de sala válido.\n> ");
                 numSala = validarEntero();
             }
 
@@ -158,7 +158,7 @@ public class CineService {
             int numEspectador = validarEntero();
 
             while (numEspectador <= 0 || numEspectador > espectadores.size()) {
-                System.out.println("Número de espectador inválido. Por favor, ingrese un número de espectador válido.");
+                System.out.println("Número de espectador inválido. Por favor, ingrese un número de espectador válido.\n> ");
                 numEspectador = validarEntero();
             }
 

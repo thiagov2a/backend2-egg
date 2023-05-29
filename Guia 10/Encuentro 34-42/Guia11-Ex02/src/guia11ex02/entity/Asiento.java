@@ -40,7 +40,7 @@ public class Asiento {
     @Override
     public String toString() {
         String estado = (espectador == null) ? " " : "X";
-        return String.format("%-3s", ubicacion + estado);
+        return ubicacion + estado;
     }
 
 }
