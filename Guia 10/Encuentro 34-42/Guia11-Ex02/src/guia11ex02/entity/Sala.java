@@ -49,7 +49,7 @@ public class Sala {
 
     @Override
     public String toString() {
-        return "Pelicula: " + pelicula + " | Precio: " + precio;
+        return "Precio: $" + precio;
     }
 
 }

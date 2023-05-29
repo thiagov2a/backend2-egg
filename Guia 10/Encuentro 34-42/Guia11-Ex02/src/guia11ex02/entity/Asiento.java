@@ -39,11 +39,8 @@ public class Asiento {
 
     @Override
     public String toString() {
-        if (espectador != null) {
-            return ubicacion + "X";
-        } else {
-            return ubicacion + " ";
-        }
+        String estado = (espectador == null) ? " " : "X";
+        return String.format("%-3s", ubicacion + estado);
     }
 
 }
