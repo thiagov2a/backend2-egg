@@ -70,6 +70,8 @@ public final class Televisor extends Electrodomestico {
         if (sintonizadorTDT) {
             this.precio += 500d;
         }
+        System.out.println("===== PRECIO FINAL =====");
+        System.out.println("El precio final del televisor es de $" + this.precio);
     }
 
 }

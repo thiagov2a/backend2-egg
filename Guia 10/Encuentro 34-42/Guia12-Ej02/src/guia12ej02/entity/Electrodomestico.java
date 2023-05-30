@@ -63,49 +63,6 @@ public class Electrodomestico {
         this.peso = peso;
     }
 
-    private void comprobarConsumoEnergetico(Integer opc) {
-        switch (opc) {
-            case 1:
-                this.consumo = Consumo.A;
-                break;
-            case 2:
-                this.consumo = Consumo.B;
-                break;
-            case 3:
-                this.consumo = Consumo.C;
-                break;
-            case 4:
-                this.consumo = Consumo.D;
-                break;
-            case 5:
-                this.consumo = Consumo.E;
-                break;
-            default:
-                this.consumo = Consumo.F;
-                break;
-        }
-    }
-
-    private void comprobarColor(Integer opc) {
-        switch (opc) {
-            case 1:
-                this.color = Color.NEGRO.getValor();
-                break;
-            case 2:
-                this.color = Color.ROJO.getValor();
-                break;
-            case 3:
-                this.color = Color.AZUL.getValor();
-                break;
-            case 4:
-                this.color = Color.GRIS.getValor();
-                break;
-            default:
-                this.color = Color.BLANCO.getValor();
-                break;
-        }
-    }
-
     public void crearElectrodomestico() {
         System.out.println("===== CONSUMO ENERGETICO =====");
 
@@ -155,7 +112,50 @@ public class Electrodomestico {
             this.precio += (this.consumo.getPrecio() + 1000d);
         }
     }
+    
+    private void comprobarConsumoEnergetico(Integer opc) {
+        switch (opc) {
+            case 1:
+                this.consumo = Consumo.A;
+                break;
+            case 2:
+                this.consumo = Consumo.B;
+                break;
+            case 3:
+                this.consumo = Consumo.C;
+                break;
+            case 4:
+                this.consumo = Consumo.D;
+                break;
+            case 5:
+                this.consumo = Consumo.E;
+                break;
+            default:
+                this.consumo = Consumo.F;
+                break;
+        }
+    }
 
+    private void comprobarColor(Integer opc) {
+        switch (opc) {
+            case 1:
+                this.color = Color.NEGRO.getValor();
+                break;
+            case 2:
+                this.color = Color.ROJO.getValor();
+                break;
+            case 3:
+                this.color = Color.AZUL.getValor();
+                break;
+            case 4:
+                this.color = Color.GRIS.getValor();
+                break;
+            default:
+                this.color = Color.BLANCO.getValor();
+                break;
+        }
+    }
+    
     public int validarEntero() {
         while (true) {
             try {

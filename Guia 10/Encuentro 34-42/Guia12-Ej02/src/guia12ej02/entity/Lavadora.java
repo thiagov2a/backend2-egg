@@ -45,6 +45,8 @@ public final class Lavadora extends Electrodomestico {
         if (carga > 30) {
             this.precio += 500d;
         }
+        System.out.println("===== PRECIO FINAL =====");
+        System.out.println("El precio final de la lavadora es de $" + this.precio);
     }
     
 }

@@ -4,7 +4,6 @@
  */
 package guia12ej02;
 
-import guia12ej02.entity.Electrodomestico;
 import guia12ej02.entity.Lavadora;
 import guia12ej02.entity.Televisor;
 
@@ -22,8 +21,6 @@ public class Guia12Ej02Main {
         System.out.println("----- LAVADORA -----");
         l.crearLavadora();
         l.precioFinal();
-        System.out.println("===== PRECIO FINAL =====");
-        System.out.println("El precio final de la lavadora es de $" + l.getPrecio());
         
         System.out.println();
         
@@ -31,8 +28,6 @@ public class Guia12Ej02Main {
         System.out.println("----- TELEVISOR -----");
         t.crearTelevisor();
         t.precioFinal();
-        System.out.println("===== PRECIO FINAL =====");
-        System.out.println("El precio final del televisor es de $" + t.getPrecio());
     }
     
 }
