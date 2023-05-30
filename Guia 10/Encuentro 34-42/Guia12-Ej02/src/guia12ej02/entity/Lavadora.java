@@ -35,8 +35,8 @@ public final class Lavadora extends Electrodomestico {
         
         System.out.println("===== CARGA =====");
         
-        System.out.print("Ingrese carga del lavadora.\n> ");
-        this.carga = input.nextDouble();
+        System.out.print("Ingrese carga de la lavadora.\n> ");
+        this.carga = validarDouble();
     }
     
     @Override

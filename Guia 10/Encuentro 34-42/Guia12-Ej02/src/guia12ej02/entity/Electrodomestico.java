@@ -84,7 +84,6 @@ public class Electrodomestico {
                 this.consumo = Consumo.F;
                 break;
         }
-        System.out.println(this.consumo);
     }
 
     private void comprobarColor(Integer opc) {
@@ -105,7 +104,6 @@ public class Electrodomestico {
                 this.color = Color.BLANCO.getValor();
                 break;
         }
-        System.out.println(this.color);
     }
 
     public void crearElectrodomestico() {
@@ -116,7 +114,7 @@ public class Electrodomestico {
         }
 
         System.out.print("Elija una opción: ");
-        Integer opcConsumo = input.nextInt();
+        Integer opcConsumo = validarEntero();
 
         comprobarConsumoEnergetico(opcConsumo);
 
@@ -127,32 +125,65 @@ public class Electrodomestico {
         }
 
         System.out.print("Elija una opción: ");
-        Integer opcColor = input.nextInt();
+        Integer opcColor = validarEntero();
 
         comprobarColor(opcColor);
 
         System.out.println("===== PESO =====");
-        
-        System.out.print("Ingrese peso del electrodomestico.\n> ");
-        this.peso = input.nextDouble();
-        
+
+        do {
+            System.out.print("Ingrese peso del electrodomestico.\n> ");
+            this.peso = validarDouble();
+        } while (this.peso > 0);
+
+        System.out.println("===== SUBPRECIO =====");
         System.out.println("El subprecio del electrodomestico es de $1000.");
         this.precio = 1000d;
     }
 
     public void precioFinal() {
-        if (this.peso >= 1 && this.peso <=19) {
+        if (this.peso >= 1 && this.peso <= 19) {
             this.precio += (this.consumo.getPrecio() + 100d);
         }
-        if (this.peso >= 20 && this.peso <=49) {
+        if (this.peso >= 20 && this.peso <= 49) {
             this.precio += (this.consumo.getPrecio() + 500d);
         }
-        if (this.peso >= 50 && this.peso <=79) {
+        if (this.peso >= 50 && this.peso <= 79) {
             this.precio += (this.consumo.getPrecio() + 800d);
         }
         if (this.peso >= 80) {
             this.precio += (this.consumo.getPrecio() + 1000d);
         }
+    }
+
+    public int validarEntero() {
+        while (true) {
+            try {
+                return Integer.parseInt(input.next());
+            } catch (NumberFormatException e) {
+                System.out.print("Ingrese un número entero válido.\n> ");
+            }
+        }
+    }
+
+    public double validarDouble() {
+        while (true) {
+            try {
+                String entrada = input.next().replace(",", ".");
+                return Double.parseDouble(entrada);
+            } catch (NumberFormatException e) {
+                System.out.print("Ingrese un número válido.\n> ");
+            }
+        }
+    }
+
+    public String validarString() {
+        String entrada = input.next();
+        while (entrada.isEmpty()) {
+            System.out.print("Ingrese un valor válido.\n> ");
+            entrada = input.next();
+        }
+        return entrada;
     }
 
 }
