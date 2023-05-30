@@ -2,16 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package guia12ej02;
+package guia12ej0203;
 
-import guia12ej02.entity.Lavadora;
-import guia12ej02.entity.Televisor;
+import guia12ej0203.entity.Lavadora;
+import guia12ej0203.entity.Televisor;
 
 /**
  *
  * @author Thiago
  */
-public class Guia12Ej02Main {
+public class Guia12Ej0203Main {
 
     /**
      * @param args the command line arguments

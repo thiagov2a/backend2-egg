@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package guia12ej02.entity;
+package guia12ej0203.entity;
 
-import guia12ej02.enums.Consumo;
+import guia12ej0203.enums.Consumo;
 
 /**
  *

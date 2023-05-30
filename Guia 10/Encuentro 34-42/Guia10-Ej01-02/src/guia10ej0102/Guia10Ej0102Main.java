@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package guia10ej02;
+package guia10ej0102;
 
-import guia10ej02.service.PerroService;
+import guia10ej0102.service.PerroService;
 
 /**
  *
  * @author Thiago
  */
-public class Guia10Ej02Main {
+public class Guia10Ej0102Main {
 
     /**
      * @param args the command line arguments

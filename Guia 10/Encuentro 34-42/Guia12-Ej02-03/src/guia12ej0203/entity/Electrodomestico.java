@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package guia12ej02.entity;
+package guia12ej0203.entity;
 
-import guia12ej02.enums.Color;
-import guia12ej02.enums.Consumo;
+import guia12ej0203.enums.Color;
+import guia12ej0203.enums.Consumo;
 import java.util.Scanner;
 
 /**
@@ -85,7 +85,7 @@ public class Electrodomestico {
         do {
             System.out.print("Ingrese peso del electrodomestico.\n> ");
             this.peso = validarDouble();
-        } while (this.peso > 0);
+        } while (this.peso <= 0);
 
         System.out.println("===== SUBPRECIO =====");
         System.out.println("El subprecio del electrodomestico es de $1000.");

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package guia10ej02.service;
+package guia10ej0102.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
