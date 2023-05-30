@@ -24,8 +24,8 @@ public class Electrodomestico {
         this.input = new Scanner(System.in).useDelimiter("\n");
     }
 
-    public Electrodomestico(Double precio, String color, Consumo consumo, Double peso) {
-        this.precio = precio;
+    public Electrodomestico(String color, Consumo consumo, Double peso) {
+        this.precio = 1000d;
         this.color = color;
         this.consumo = consumo;
         this.peso = peso;
