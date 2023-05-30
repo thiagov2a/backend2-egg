@@ -32,7 +32,7 @@ public class CineService {
         espectadores = new ArrayList<>();
     }
 
-    public void ejecutarMenu() {
+    public void ejecutarMenu() {  
         boolean salir = false;
 
         while (!salir) {
