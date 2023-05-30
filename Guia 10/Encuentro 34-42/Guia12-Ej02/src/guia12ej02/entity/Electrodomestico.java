@@ -29,6 +29,7 @@ public class Electrodomestico {
         this.color = color;
         this.consumo = consumo;
         this.peso = peso;
+        this.input = new Scanner(System.in).useDelimiter("\n");
     }
 
     public Double getPrecio() {
@@ -65,29 +66,22 @@ public class Electrodomestico {
 
     public void crearElectrodomestico() {
         System.out.println("===== CONSUMO ENERGETICO =====");
-
         for (int i = 0; i < Consumo.values().length; i++) {
             System.out.println((i + 1) + ". " + Consumo.values()[i].toString());
         }
-
         System.out.print("Elija una opción: ");
         Integer opcConsumo = validarEntero();
-
         comprobarConsumoEnergetico(opcConsumo);
 
         System.out.println("===== COLOR =====");
-
         for (int i = 0; i < Color.values().length; i++) {
             System.out.println((i + 1) + ". " + Color.values()[i].getValor());
         }
-
         System.out.print("Elija una opción: ");
         Integer opcColor = validarEntero();
-
         comprobarColor(opcColor);
 
         System.out.println("===== PESO =====");
-
         do {
             System.out.print("Ingrese peso del electrodomestico.\n> ");
             this.peso = validarDouble();

@@ -34,7 +34,6 @@ public final class Lavadora extends Electrodomestico {
         super.crearElectrodomestico();
         
         System.out.println("===== CARGA =====");
-        
         System.out.print("Ingrese carga de la lavadora.\n> ");
         this.carga = validarDouble();
     }

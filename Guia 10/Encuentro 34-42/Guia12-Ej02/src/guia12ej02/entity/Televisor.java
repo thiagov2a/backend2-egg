@@ -44,14 +44,12 @@ public final class Televisor extends Electrodomestico {
         super.crearElectrodomestico();
 
         System.out.println("===== RESOLUCIÓN =====");
-
         do {
             System.out.print("Ingrese las pulgadas del televisor.\n> ");
             this.resolucion = validarDouble();
-        } while (this.resolucion > 0d);
+        } while (this.resolucion <= 0d);
 
         System.out.println("===== SINTONIZADOR TDT =====");
-
         String opc;
         do {
             System.out.print("¿El televisor tiene sintonizador TDT? (s/n)\n> ");
