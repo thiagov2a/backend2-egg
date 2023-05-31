@@ -24,16 +24,11 @@ public class Guia12Ej0203Main {
      */
     public static void main(String[] args) {
         List<Electrodomestico> electrodomesticos = new ArrayList<>();
-
-        Lavadora e1 = new Lavadora(35d, Color.AZUL.getValor(), Consumo.C, 42.5);
-        Lavadora e2 = new Lavadora(40d, Color.ROJO.getValor(), Consumo.A, 80d);
-        Televisor e3 = new Televisor(60d, true, Color.GRIS.getValor(), Consumo.B, 49d);
-        Televisor e4 = new Televisor(20d, false, Color.BLANCO.getValor(), Consumo.F, 69d);
-
-        electrodomesticos.add(e1);
-        electrodomesticos.add(e2);
-        electrodomesticos.add(e3);
-        electrodomesticos.add(e4);
+        
+        electrodomesticos.add(new Lavadora(35d, Color.AZUL.getValor(), Consumo.C, 42.5));
+        electrodomesticos.add(new Lavadora(40d, Color.ROJO.getValor(), Consumo.A, 80d));
+        electrodomesticos.add(new Televisor(60d, true, Color.GRIS.getValor(), Consumo.B, 49d));
+        electrodomesticos.add(new Televisor(20d, false, Color.BLANCO.getValor(), Consumo.F, 69d));
 
         Double sumaLavadora = 0d;
         Double sumaTelevisor = 0d;
