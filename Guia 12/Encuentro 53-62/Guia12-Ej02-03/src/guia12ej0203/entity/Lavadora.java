@@ -16,7 +16,7 @@ public final class Lavadora extends Electrodomestico {
 
     public Lavadora() {
     }
-
+    
     public Lavadora(Double carga, String color, Consumo consumo, Double peso) {
         super(color, consumo, peso);
         this.carga = carga;

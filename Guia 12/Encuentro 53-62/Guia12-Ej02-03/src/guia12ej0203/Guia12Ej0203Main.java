@@ -45,7 +45,9 @@ public class Guia12Ej0203Main {
 
             if (aux instanceof Lavadora) {
                 sumaLavadora += aux.getPrecio();
-            } else if (aux instanceof Televisor) {
+            }
+
+            if (aux instanceof Televisor) {
                 sumaTelevisor += aux.getPrecio();
             }
 
