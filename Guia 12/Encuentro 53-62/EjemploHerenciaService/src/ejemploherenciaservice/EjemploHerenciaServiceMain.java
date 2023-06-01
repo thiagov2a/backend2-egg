@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package guia12ex01;
+package ejemploherenciaservice;
 
 /**
  *
  * @author Thiago
  */
-public class Guia12Ex01Main {
+public class EjemploHerenciaServiceMain {
 
     /**
      * @param args the command line arguments
