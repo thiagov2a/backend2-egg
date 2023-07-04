@@ -32,17 +32,17 @@ public class CineService {
         espectadores = new ArrayList<>();
     }
 
-    public void ejecutarMenu() {  
+    public void ejecutarMenu() {
         boolean salir = false;
 
         while (!salir) {
-            System.out.println("===== MENÚ PRINCIPAL =====");
-            System.out.println("1. Crear una sala");
-            System.out.println("2. Crear espectadores");
-            System.out.println("3. Recibir espectadores en una sala");
-            System.out.println("4. Mostrar sala");
-            System.out.println("5. Salir");
-            System.out.print("Ingrese una opción: ");
+            System.out.print("===== MENÚ PRINCIPAL =====\n"
+                    + "1. Crear una sala\n"
+                    + "2. Crear espectadores\n"
+                    + "3. Recibir espectadores en una sala\n"
+                    + "4. Mostrar sala\n"
+                    + "5. Salir\n"
+                    + "Ingrese una opción: ");
             int opcion = validarEntero();
 
             switch (opcion) {

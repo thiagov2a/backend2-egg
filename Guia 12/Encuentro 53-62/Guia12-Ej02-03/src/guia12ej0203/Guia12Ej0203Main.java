@@ -24,7 +24,7 @@ public class Guia12Ej0203Main {
      */
     public static void main(String[] args) {
         List<Electrodomestico> electrodomesticos = new ArrayList<>();
-        
+
         electrodomesticos.add(new Lavadora(35d, Color.AZUL.getValor(), Consumo.C, 42.5));
         electrodomesticos.add(new Lavadora(40d, Color.ROJO.getValor(), Consumo.A, 80d));
         electrodomesticos.add(new Televisor(60d, true, Color.GRIS.getValor(), Consumo.B, 49d));
@@ -39,11 +39,13 @@ public class Guia12Ej0203Main {
             sumaTotal += aux.getPrecio();
 
             if (aux instanceof Lavadora) {
-                sumaLavadora += aux.getPrecio();
+                Lavadora lavadora = (Lavadora) aux;
+                sumaLavadora += lavadora.getPrecio();
             }
 
             if (aux instanceof Televisor) {
-                sumaTelevisor += aux.getPrecio();
+                Televisor televisor = (Televisor) aux;
+                sumaTelevisor += televisor.getPrecio();
             }
 
             System.out.println("");
