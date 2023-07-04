@@ -14,6 +14,8 @@ public class Guia15Ej01Main {
     public static void main(String[] args) {
         ProductoService productoService = new ProductoService();
         try {
+            productoService.imprimirNombreProducto();
+            productoService.imprimirNombrePrecioProducto();
             productoService.imprimirProductosEntre120Y202();
         } catch (Exception e) {
             e.printStackTrace();
