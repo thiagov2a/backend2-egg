@@ -45,7 +45,7 @@ public abstract class DAO<T> {
     protected void eliminar(T objeto) {
         conectar();
         em.getTransaction().begin();
-        em.remove(objeto);
+        em.remove(em.merge(objeto));
         em.getTransaction().commit();
         desconectar();
     }

@@ -21,6 +21,7 @@ public class AutorService {
             autor.setNombre(nombre);
             autor.setAlta(alta);
             DAO.guardar(autor);
+            System.out.println("Autor guardado correctamente.");
             return autor;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -31,6 +32,7 @@ public class AutorService {
     public Autor editarAutor(Autor autor) {
         try {
             DAO.editar(autor);
+            System.out.println("Autor editado correctamente.");
             return autor;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -41,6 +43,7 @@ public class AutorService {
     public boolean eliminarPorId(Integer id) {
         try {
             DAO.eliminar(id);
+            System.out.println("Autor eliminado correctamente.");
             return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
