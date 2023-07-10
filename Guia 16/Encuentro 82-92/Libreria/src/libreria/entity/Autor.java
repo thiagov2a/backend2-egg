@@ -3,6 +3,7 @@ package libreria.entity;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -13,13 +14,14 @@ import javax.persistence.Id;
 public class Autor implements Serializable {
     
     @Id
-    @GeneratedValue(generator = "uuid")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String nombre;
     private Boolean alta;
 
     public Autor() {
+        this.alta = true;
     }
 
     public Autor(Integer id, String nombre, Boolean alta) {

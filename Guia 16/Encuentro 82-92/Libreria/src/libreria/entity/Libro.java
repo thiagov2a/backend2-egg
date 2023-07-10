@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
@@ -15,7 +16,7 @@ import javax.persistence.OneToOne;
 public class Libro implements Serializable {
 
     @Id
-    @GeneratedValue(generator = "uuid")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long isbn;
 
     private String titulo;
@@ -37,6 +38,8 @@ public class Libro implements Serializable {
     private Editorial editorial;
 
     public Libro() {
+        this.ejemplaresPrestados = 0; // Cuando creamos un nuevo libro no hay ejemplares prestados
+        this.alta = true;
     }
 
     public Libro(Long isbn, String titulo, Integer anio, Integer ejemplares, Integer ejemplaresPrestados, Integer ejemplaresRestantes, Boolean alta, Autor autor, Editorial editorial) {
