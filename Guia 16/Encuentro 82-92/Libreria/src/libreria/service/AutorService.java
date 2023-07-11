@@ -15,11 +15,10 @@ public class AutorService {
         this.DAO = new AutorDAO();
     }
 
-    public Autor crearAutor(String nombre, Boolean alta) {
+    public Autor crearAutor(String nombre) {
         Autor autor = new Autor();
         try {
             autor.setNombre(nombre);
-            autor.setAlta(alta);
             DAO.guardar(autor);
             System.out.println("Autor guardado correctamente.");
             return autor;

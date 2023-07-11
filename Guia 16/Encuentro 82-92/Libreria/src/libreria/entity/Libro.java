@@ -6,13 +6,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Thiago
  */
 @Entity
+@Table(name = "libros")
 public class Libro implements Serializable {
 
     @Id
@@ -31,11 +34,16 @@ public class Libro implements Serializable {
     
     private Boolean alta;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "autor_id")
     private Autor autor;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "editorial_id")
     private Editorial editorial;
+
+//    @OneToMany(mappedBy = "libro")
+//    private List<Prestamo> prestamos;
 
     public Libro() {
         this.ejemplaresPrestados = 0; // Cuando creamos un nuevo libro no hay ejemplares prestados

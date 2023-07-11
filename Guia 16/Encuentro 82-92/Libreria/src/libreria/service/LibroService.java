@@ -11,7 +11,7 @@ import libreria.persistence.LibroDAO;
  */
 public class LibroService {
     
-    private LibroDAO DAO;
+    private final LibroDAO DAO;
     
     public LibroService() {
         this.DAO = new LibroDAO();
