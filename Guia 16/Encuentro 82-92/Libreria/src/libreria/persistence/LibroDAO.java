@@ -23,7 +23,7 @@ public final class LibroDAO extends DAO<Libro> {
         super.eliminar(libro);
     }
 
-    private Libro buscarPorIsbn(Long isbn) throws Exception {
+    public Libro buscarPorIsbn(Long isbn) throws Exception {
         conectar();
         Libro libro = em.find(Libro.class, isbn);
         desconectar();

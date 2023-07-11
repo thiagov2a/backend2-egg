@@ -31,7 +31,7 @@ public class Libro implements Serializable {
 
     @Column(name = "ejemplares_restantes")
     private Integer ejemplaresRestantes;
-    
+
     private Boolean alta;
 
     @ManyToOne
@@ -44,7 +44,7 @@ public class Libro implements Serializable {
 
 //    @OneToMany(mappedBy = "libro")
 //    private List<Prestamo> prestamos;
-
+    
     public Libro() {
         this.ejemplaresPrestados = 0; // Cuando creamos un nuevo libro no hay ejemplares prestados
         this.alta = true;

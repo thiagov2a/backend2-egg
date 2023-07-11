@@ -27,9 +27,6 @@ public class Menu {
     }
 
     public void prueba() {
-        autorService.eliminarPorId(1);
-        autorService.eliminarPorId(2);
-        autorService.eliminarPorId(3);
     }
 
 }
