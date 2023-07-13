@@ -18,16 +18,19 @@ public final class LibroDAO extends DAO<Libro> {
         super.editar(libro);
     }
 
-    public void eliminar(Long isbn) throws Exception {
+    public void eliminar(Long isbn) {
         Libro libro = buscarPorIsbn(isbn);
         super.eliminar(libro);
     }
 
-    public Libro buscarPorIsbn(Long isbn) throws Exception {
-        conectar();
-        Libro libro = em.find(Libro.class, isbn);
-        desconectar();
-        return libro;
+    public Libro buscarPorIsbn(Long isbn) {
+        try {
+            conectar();
+            Libro libro = em.find(Libro.class, isbn);
+            return libro;
+        } finally {
+            desconectar();
+        }
     }
 
 }

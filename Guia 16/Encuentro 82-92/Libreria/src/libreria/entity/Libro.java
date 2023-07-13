@@ -44,7 +44,6 @@ public class Libro implements Serializable {
 
 //    @OneToMany(mappedBy = "libro")
 //    private List<Prestamo> prestamos;
-    
     public Libro() {
         this.ejemplaresPrestados = 0; // Cuando creamos un nuevo libro no hay ejemplares prestados
         this.alta = true;
@@ -136,7 +135,17 @@ public class Libro implements Serializable {
 
     @Override
     public String toString() {
-        return "Libro{" + "isbn=" + isbn + ", titulo=" + titulo + ", anio=" + anio + ", ejemplares=" + ejemplares + ", ejemplaresPrestados=" + ejemplaresPrestados + ", ejemplaresRestantes=" + ejemplaresRestantes + ", alta=" + alta + ", autor=" + autor + ", editorial=" + editorial + '}';
+        return "Libro{"
+                + "isbn=" + isbn
+                + ", titulo='" + titulo + '\''
+                + ", anio=" + anio
+                + ", ejemplares=" + ejemplares
+                + ", ejemplaresPrestados=" + ejemplaresPrestados
+                + ", ejemplaresRestantes=" + ejemplaresRestantes
+                + ", alta=" + alta
+                + ", autor=" + (autor != null ? autor.getNombre() : null)
+                + ", editorial=" + (editorial != null ? editorial.getNombre() : null)
+                + '}';
     }
 
 }

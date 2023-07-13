@@ -18,16 +18,19 @@ public final class AutorDAO extends DAO<Autor> {
         super.editar(autor);
     }
 
-    public void eliminar(Integer id) throws Exception {
+    public void eliminar(Integer id) {
         Autor autor = buscarPorId(id);
         super.eliminar(autor);
     }
 
-    public Autor buscarPorId(Integer id) throws Exception {
-        conectar();
-        Autor autor = em.find(Autor.class, id);
-        desconectar();
-        return autor;
+    public Autor buscarPorId(Integer id) {
+        try {
+            conectar();
+            Autor autor = em.find(Autor.class, id);
+            return autor;
+        } finally {
+            desconectar();
+        }
     }
 
 }

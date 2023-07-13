@@ -18,16 +18,19 @@ public final class EditorialDAO extends DAO<Editorial> {
         super.editar(editorial);
     }
 
-    public void eliminar(Integer id) throws Exception {
+    public void eliminar(Integer id) {
         Editorial editorial = buscarPorId(id);
         super.eliminar(editorial);
     }
 
-    public Editorial buscarPorId(Integer id) throws Exception {
-        conectar();
-        Editorial editorial = em.find(Editorial.class, id);
-        desconectar();
-        return editorial;
+    public Editorial buscarPorId(Integer id) {
+        try {
+            conectar();
+            Editorial editorial = em.find(Editorial.class, id);
+            return editorial;
+        } finally {
+            desconectar();
+        }
     }
 
 }

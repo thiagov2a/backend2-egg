@@ -27,27 +27,36 @@ public abstract class DAO<T> {
     }
 
     protected void guardar(T objeto) {
-        conectar();
-        em.getTransaction().begin();
-        em.persist(objeto);
-        em.getTransaction().commit();
-        desconectar();
+        try {
+            conectar();
+            em.getTransaction().begin();
+            em.persist(objeto);
+            em.getTransaction().commit();
+        } finally {
+            desconectar();
+        }
     }
 
     protected void editar(T objeto) {
-        conectar();
-        em.getTransaction().begin();
-        em.merge(objeto);
-        em.getTransaction().commit();
-        desconectar();
+        try {
+            conectar();
+            em.getTransaction().begin();
+            em.merge(objeto);
+            em.getTransaction().commit();
+        } finally {
+            desconectar();
+        }
     }
 
     protected void eliminar(T objeto) {
-        conectar();
-        em.getTransaction().begin();
-        em.remove(em.merge(objeto));
-        em.getTransaction().commit();
-        desconectar();
+        try {
+            conectar();
+            em.getTransaction().begin();
+            em.remove(em.merge(objeto));
+            em.getTransaction().commit();
+        } finally {
+            desconectar();
+        }
     }
 
 }

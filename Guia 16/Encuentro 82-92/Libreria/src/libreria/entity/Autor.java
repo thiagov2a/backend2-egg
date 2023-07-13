@@ -1,6 +1,7 @@
 package libreria.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,6 +30,7 @@ public class Autor implements Serializable {
 
     public Autor() {
         this.alta = true;
+        this.libros = new ArrayList();
     }
 
     public Autor(Integer id, String nombre, Boolean alta, List<Libro> libros) {
@@ -72,7 +74,11 @@ public class Autor implements Serializable {
 
     @Override
     public String toString() {
-        return "Autor{" + "id=" + id + ", nombre=" + nombre + ", alta=" + alta + ", libros=" + libros + '}';
+        return "Autor{"
+                + "id=" + id
+                + ", nombre='" + nombre + '\''
+                + ", cantidadLibros=" + (libros != null ? libros.size() : 0)
+                + '}';
     }
 
 }
