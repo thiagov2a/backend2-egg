@@ -9,21 +9,28 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
  * @author Thiago
  */
 @Entity
-@Table(name = "libros")
+@Table(name = "libros", uniqueConstraints = @UniqueConstraint(columnNames = {"titulo", "autor_id", "editorial_id"}))
 public class Libro implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "isbn")
     private Long isbn;
 
+    @Column(name = "titulo")
     private String titulo;
+
+    @Column(name = "anio")
     private Integer anio;
+
+    @Column(name = "ejemplares")
     private Integer ejemplares;
 
     @Column(name = "ejemplares_prestados")
@@ -32,6 +39,7 @@ public class Libro implements Serializable {
     @Column(name = "ejemplares_restantes")
     private Integer ejemplaresRestantes;
 
+    @Column(name = "alta")
     private Boolean alta;
 
     @ManyToOne
@@ -42,8 +50,6 @@ public class Libro implements Serializable {
     @JoinColumn(name = "editorial_id")
     private Editorial editorial;
 
-//    @OneToMany(mappedBy = "libro")
-//    private List<Prestamo> prestamos;
     public Libro() {
         this.ejemplaresPrestados = 0; // Cuando creamos un nuevo libro no hay ejemplares prestados
         this.alta = true;

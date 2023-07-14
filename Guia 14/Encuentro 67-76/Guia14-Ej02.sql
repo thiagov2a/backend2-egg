@@ -84,8 +84,8 @@ Consultas Multitabla
 /* 1. Devuelve una lista con el código del producto, nombre del producto, código del fabricante
 y nombre del fabricante, de todos los productos de la base de datos. */
 SELECT *
-FROM producto
-LEFT JOIN fabricante ON producto.codigo = fabricante.codigo;
+FROM producto p
+LEFT JOIN fabricante f ON p.codigo_fabricante = f.codigo;
 
 /* 2. Devuelve una lista con el nombre del producto, precio y nombre de fabricante de todos
 los productos de la base de datos. Ordene el resultado por el nombre del fabricante, por

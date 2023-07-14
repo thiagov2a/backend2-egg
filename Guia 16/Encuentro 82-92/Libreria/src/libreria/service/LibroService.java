@@ -19,25 +19,18 @@ public class LibroService {
 
     public Libro crearLibro(String titulo, Integer anio, Integer ejemplares, Autor autor, Editorial editorial) {
         try {
-            
-            validarParametrosCrearLibro(titulo, anio, ejemplares, autor, editorial);
-
+            validarCrearLibro(titulo, anio, ejemplares, autor, editorial);
             Libro libro = new Libro();
-            
             libro.setTitulo(titulo);
             libro.setAnio(anio);
             libro.setEjemplares(ejemplares);
             libro.setEjemplaresPrestados(0);
             libro.setEjemplaresRestantes(ejemplares);
-            
             libro.setAutor(autor);
             libro.setEditorial(editorial);
-            
             autor.getLibros().add(libro);
             editorial.getLibros().add(libro);
-
             DAO.guardar(libro);
-
             System.out.println("Libro creado correctamente.");
             return libro;
         } catch (IllegalArgumentException e) {
@@ -48,7 +41,7 @@ public class LibroService {
 
     public Libro editarLibro(Libro libro) {
         try {
-            validarParametrosEditarLibro(libro);
+            validarEditarLibro(libro);
             DAO.editar(libro);
             System.out.println("Libro editado correctamente.");
             return libro;
@@ -80,7 +73,21 @@ public class LibroService {
         }
     }
 
-    private void validarParametrosCrearLibro(String titulo, Integer anio, Integer ejemplares, Autor autor, Editorial editorial) {
+    public Libro buscarPorTituloAutorEditorial(String titulo, Autor autor, Editorial editorial) {
+        try {
+            validarTituloAutorEditorial(titulo, autor, editorial);
+            return DAO.buscarPorTituloAutorEditorial(titulo, autor, editorial);
+        } catch (Exception e) {
+            System.out.println("Error al buscar el libro por titulo, autor y editorial: " + e.getMessage());
+            return null;
+        }
+    }
+
+    private void validarCrearLibro(String titulo, Integer anio, Integer ejemplares, Autor autor, Editorial editorial) {
+        if (buscarPorTituloAutorEditorial(titulo, autor, editorial) != null) {
+            throw new IllegalArgumentException("El libro ya existe en la base de datos.");
+        }
+
         if (titulo == null || titulo.trim().isEmpty()) {
             throw new IllegalArgumentException("El título del libro es requerido.");
         }
@@ -102,21 +109,49 @@ public class LibroService {
         }
     }
 
-    private void validarParametrosEditarLibro(Libro libro) {
+    private void validarEditarLibro(Libro libro) {
         if (libro == null) {
             throw new IllegalArgumentException("El libro es nulo.");
         }
 
-        if (libro.getIsbn() == null) {
-            throw new IllegalArgumentException("El ISBN del libro es requerido.");
+        if (libro.getTitulo() == null || libro.getTitulo().trim().isEmpty()) {
+            throw new IllegalArgumentException("El título del libro es requerido.");
         }
 
-        // Resto de validaciones específicas para editar un libro...
+        if (libro.getAnio() == null || libro.getAnio() < 0) {
+            throw new IllegalArgumentException("El año del libro es inválido.");
+        }
+
+        if (libro.getEjemplares() == null || libro.getEjemplares() < libro.getEjemplaresRestantes()) {
+            throw new IllegalArgumentException("La cantidad de ejemplares es inválida.");
+        }
+
+        if (libro.getAutor() == null) {
+            throw new IllegalArgumentException("El autor del libro es requerido.");
+        }
+
+        if (libro.getEditorial() == null) {
+            throw new IllegalArgumentException("La editorial del libro es requerida.");
+        }
     }
 
     private void validarISBN(Long isbn) {
         if (isbn == null) {
             throw new IllegalArgumentException("El ISBN es requerido.");
+        }
+    }
+
+    private void validarTituloAutorEditorial(String titulo, Autor autor, Editorial editorial) {
+        if (titulo == null || titulo.trim().isEmpty()) {
+            throw new IllegalArgumentException("El título del libro es requerido.");
+        }
+
+        if (autor == null) {
+            throw new IllegalArgumentException("El autor del libro es requerido.");
+        }
+
+        if (editorial == null) {
+            throw new IllegalArgumentException("La editorial del libro es requerida.");
         }
     }
 

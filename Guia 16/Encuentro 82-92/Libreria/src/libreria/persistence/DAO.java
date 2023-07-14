@@ -32,6 +32,11 @@ public abstract class DAO<T> {
             em.getTransaction().begin();
             em.persist(objeto);
             em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw e;
         } finally {
             desconectar();
         }
@@ -43,6 +48,11 @@ public abstract class DAO<T> {
             em.getTransaction().begin();
             em.merge(objeto);
             em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw e;
         } finally {
             desconectar();
         }
@@ -54,6 +64,11 @@ public abstract class DAO<T> {
             em.getTransaction().begin();
             em.remove(em.merge(objeto));
             em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw e;
         } finally {
             desconectar();
         }

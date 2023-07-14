@@ -1,5 +1,6 @@
 package libreria.persistence;
 
+import javax.persistence.NoResultException;
 import libreria.entity.Editorial;
 
 /**
@@ -27,6 +28,25 @@ public final class EditorialDAO extends DAO<Editorial> {
         try {
             conectar();
             Editorial editorial = em.find(Editorial.class, id);
+            return editorial;
+        } finally {
+            desconectar();
+        }
+    }
+    
+    public Editorial buscarPorNombre(String nombre) {
+        try {
+            conectar();
+            Editorial editorial = null;
+            try {
+                editorial = (Editorial) em.createQuery("SELECT e "
+                        + "FROM Editorial e "
+                        + "WHERE e.nombre = :nombre")
+                        .setParameter("nombre", nombre)
+                        .getSingleResult();
+            } catch (NoResultException e) {
+                // No se encontró ningún autor
+            }
             return editorial;
         } finally {
             desconectar();

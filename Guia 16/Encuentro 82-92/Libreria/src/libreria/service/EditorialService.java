@@ -18,6 +18,7 @@ public class EditorialService {
     public Editorial crearEditorial(String nombre) {
         Editorial editorial = new Editorial();
         try {
+            validarCrearEditorial(nombre);
             editorial.setNombre(nombre);
             DAO.guardar(editorial);
             System.out.println("Editorial guardada correctamente.");
@@ -30,6 +31,7 @@ public class EditorialService {
 
     public Editorial editarEditorial(Editorial editorial) {
         try {
+            validarEditarEditorial(editorial);
             DAO.editar(editorial);
             System.out.println("Editorial editada correctamente.");
             return editorial;
@@ -41,6 +43,7 @@ public class EditorialService {
 
     public boolean eliminarPorId(Integer id) {
         try {
+            validarId(id);
             DAO.eliminar(id);
             System.out.println("Editorial eliminada correctamente.");
             return true;
@@ -52,10 +55,42 @@ public class EditorialService {
 
     public Editorial buscarPorId(Integer id) {
         try {
+            validarId(id);
             return DAO.buscarPorId(id);
         } catch (Exception e) {
             System.out.println("Error al buscar la editorial por ID: " + e.getMessage());
             return null;
+        }
+    }
+    
+    public Editorial buscarPorNombre(String nombre) {
+        try {
+            
+        } catch (Exception e) {
+            System.out.println("Error");
+        }
+    }
+
+    private void validarCrearEditorial(String nombre) {
+        if
+        if (nombre == null || nombre.trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre del autor es requerido.");
+        }
+    }
+
+    private void validarEditarEditorial(Editorial editorial) {
+        if (editorial == null) {
+            throw new IllegalArgumentException("El libro es nulo.");
+        }
+
+        if (editorial.getNombre() == null || editorial.getNombre().trim().isEmpty()) {
+            throw new IllegalArgumentException("El título del libro es requerido.");
+        }
+    }
+
+    private void validarId(Integer id) {
+        if (id == null) {
+            throw new IllegalArgumentException("El ID es requerido.");
         }
     }
 

@@ -7,6 +7,7 @@ import libreria.entity.Libro;
 import libreria.service.AutorService;
 import libreria.service.EditorialService;
 import libreria.service.LibroService;
+import org.eclipse.persistence.exceptions.DatabaseException;
 
 /**
  *
@@ -27,12 +28,16 @@ public class Menu {
     }
 
     public void mostrarMenu() {
-        Autor autor = autorService.crearAutor("Thiago");
-        Editorial editorial = editorialService.crearEditorial("IVREA");
-        Editorial editorial1 = editorialService.crearEditorial("Lollipop");
-        libroService.crearLibro("La Bella y la Bestia", 1945, 25, autor, editorial);
-        libroService.crearLibro("Guardianes de la Galaxia", 1996, 54, autor, editorial1);
-        System.out.println(autor.toString());
+        try {
+            Autor autor = autorService.crearAutor("Oliver");
+            Editorial editorial = editorialService.crearEditorial("IVREA");
+            Editorial editorial1 = editorialService.crearEditorial("Lollipop");
+            libroService.crearLibro("La Bella y la Bestia", 1945, 25, autor, editorial);
+            libroService.crearLibro("Guardianes de la Galaxia", 1996, 54, autor, editorial1);
+            //System.out.println(autor.toString());
+        } catch (DatabaseException e) {
+            System.out.println("Error al crear el autor/editorial: El autor/editorial ya existe.");
+        }
     }
 
 }
