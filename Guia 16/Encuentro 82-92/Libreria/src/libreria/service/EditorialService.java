@@ -62,17 +62,22 @@ public class EditorialService {
             return null;
         }
     }
-    
+
     public Editorial buscarPorNombre(String nombre) {
         try {
-            
+            validarNombre(nombre);
+            return DAO.buscarPorNombre(nombre);
         } catch (Exception e) {
-            System.out.println("Error");
+            System.out.println("Error al buscar editorial por nombre: " + e.getMessage());
+            return null;
         }
     }
 
     private void validarCrearEditorial(String nombre) {
-        if
+        if (buscarPorNombre(nombre) != null) {
+            throw new IllegalArgumentException("La Editorial ya existe en la base de datos.");
+        }
+
         if (nombre == null || nombre.trim().isEmpty()) {
             throw new IllegalArgumentException("El nombre del autor es requerido.");
         }
@@ -91,6 +96,12 @@ public class EditorialService {
     private void validarId(Integer id) {
         if (id == null) {
             throw new IllegalArgumentException("El ID es requerido.");
+        }
+    }
+
+    private void validarNombre(String nombre) {
+        if (nombre == null || nombre.trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre del autor es requerido.");
         }
     }
 
