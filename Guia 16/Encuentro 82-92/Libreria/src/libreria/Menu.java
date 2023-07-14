@@ -29,7 +29,7 @@ public class Menu {
 
     public void mostrarMenu() {
         try {
-            Autor autor = autorService.crearAutor("Oliver");
+            Autor autor = autorService.crearAutor("Joaquin");
             Editorial editorial = editorialService.crearEditorial("IVREA");
             Editorial editorial1 = editorialService.crearEditorial("Lollipop");
             libroService.crearLibro("La Bella y la Bestia", 1945, 25, autor, editorial);
