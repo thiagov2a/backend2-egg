@@ -17,12 +17,12 @@ public class LibroService {
         this.DAO = new LibroDAO();
     }
 
-    public Libro crearLibro(String titulo, Integer anio, Integer ejemplares, Autor autor, Editorial editorial) {
+    public Libro crearLibro(String titulo, Integer año, Integer ejemplares, Autor autor, Editorial editorial) {
         try {
-            validarCrearLibro(titulo, anio, ejemplares, autor, editorial);
+            validarCrearLibro(titulo, año, ejemplares, autor, editorial);
             Libro libro = new Libro();
             libro.setTitulo(titulo);
-            libro.setAnio(anio);
+            libro.setAño(año);
             libro.setEjemplares(ejemplares);
             libro.setEjemplaresPrestados(0);
             libro.setEjemplaresRestantes(ejemplares);
@@ -83,7 +83,7 @@ public class LibroService {
         }
     }
 
-    private void validarCrearLibro(String titulo, Integer anio, Integer ejemplares, Autor autor, Editorial editorial) {
+    private void validarCrearLibro(String titulo, Integer año, Integer ejemplares, Autor autor, Editorial editorial) {
         if (buscarPorTituloAutorEditorial(titulo, autor, editorial) != null) {
             throw new IllegalArgumentException("El libro ya existe en la base de datos.");
         }
@@ -92,7 +92,7 @@ public class LibroService {
             throw new IllegalArgumentException("El título del libro es requerido.");
         }
 
-        if (anio == null || anio < 0) {
+        if (año == null || año < 0) {
             throw new IllegalArgumentException("El año del libro es inválido.");
         }
 
@@ -118,7 +118,7 @@ public class LibroService {
             throw new IllegalArgumentException("El título del libro es requerido.");
         }
 
-        if (libro.getAnio() == null || libro.getAnio() < 0) {
+        if (libro.getAño() == null || libro.getAño() < 0) {
             throw new IllegalArgumentException("El año del libro es inválido.");
         }
 

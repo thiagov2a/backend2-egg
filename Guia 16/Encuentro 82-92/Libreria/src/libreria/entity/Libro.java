@@ -27,8 +27,8 @@ public class Libro implements Serializable {
     @Column(name = "titulo")
     private String titulo;
 
-    @Column(name = "anio")
-    private Integer anio;
+    @Column(name = "año")
+    private Integer año;
 
     @Column(name = "ejemplares")
     private Integer ejemplares;
@@ -55,10 +55,10 @@ public class Libro implements Serializable {
         this.alta = true;
     }
 
-    public Libro(Long isbn, String titulo, Integer anio, Integer ejemplares, Integer ejemplaresPrestados, Integer ejemplaresRestantes, Boolean alta, Autor autor, Editorial editorial) {
+    public Libro(Long isbn, String titulo, Integer año, Integer ejemplares, Integer ejemplaresPrestados, Integer ejemplaresRestantes, Boolean alta, Autor autor, Editorial editorial) {
         this.isbn = isbn;
         this.titulo = titulo;
-        this.anio = anio;
+        this.año = año;
         this.ejemplares = ejemplares;
         this.ejemplaresPrestados = ejemplaresPrestados;
         this.ejemplaresRestantes = ejemplaresRestantes;
@@ -83,12 +83,12 @@ public class Libro implements Serializable {
         this.titulo = titulo;
     }
 
-    public Integer getAnio() {
-        return anio;
+    public Integer getAño() {
+        return año;
     }
 
-    public void setAnio(Integer anio) {
-        this.anio = anio;
+    public void setAño(Integer año) {
+        this.año = año;
     }
 
     public Integer getEjemplares() {
@@ -144,7 +144,7 @@ public class Libro implements Serializable {
         return "Libro{"
                 + "isbn=" + isbn
                 + ", titulo='" + titulo + '\''
-                + ", anio=" + anio
+                + ", año=" + año
                 + ", ejemplares=" + ejemplares
                 + ", ejemplaresPrestados=" + ejemplaresPrestados
                 + ", ejemplaresRestantes=" + ejemplaresRestantes
