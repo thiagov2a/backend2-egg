@@ -16,7 +16,7 @@ public class EditorialService {
     }
 
     public Editorial crearEditorial(String nombre) {
-        validarNombreEditorial(nombre);
+        validarNombre(nombre);
         validarExistenciaEditorial(nombre);
         try {
             Editorial editorial = new Editorial(nombre);
@@ -64,25 +64,12 @@ public class EditorialService {
     }
 
     public Editorial buscarPorNombre(String nombre) {
-        validarNombreEditorial(nombre);
+        validarNombre(nombre);
         try {
             return editorialDAO.buscarPorNombre(nombre);
         } catch (IllegalArgumentException e) {
             System.out.println("Error al buscar la editorial por nombre: " + e.getMessage());
             return null;
-        }
-    }
-
-    private void validarNombreEditorial(String nombre) {
-        if (nombre == null || nombre.trim().isEmpty()) {
-            throw new IllegalArgumentException("El nombre de la editorial es requerido.");
-        }
-    }
-
-    private void validarExistenciaEditorial(String nombre) {
-        Editorial editorialExistente = editorialDAO.buscarPorNombre(nombre);
-        if (editorialExistente != null) {
-            throw new IllegalArgumentException("La editorial ya existe en la base de datos.");
         }
     }
 
@@ -96,9 +83,22 @@ public class EditorialService {
         }
     }
 
+    private void validarExistenciaEditorial(String nombre) {
+        Editorial editorialExistente = editorialDAO.buscarPorNombre(nombre);
+        if (editorialExistente != null) {
+            throw new IllegalArgumentException("La editorial ya existe en la base de datos.");
+        }
+    }
+
     private void validarID(Integer id) {
         if (id == null) {
             throw new IllegalArgumentException("El ID es requerido.");
+        }
+    }
+
+    private void validarNombre(String nombre) {
+        if (nombre == null || nombre.trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre de la editorial es requerido.");
         }
     }
 
