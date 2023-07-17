@@ -9,19 +9,19 @@ import libreria.persistence.AutorDAO;
  */
 public class AutorService {
 
-    private final AutorDAO DAO;
+    private final AutorDAO autorDAO;
 
     public AutorService() {
-        this.DAO = new AutorDAO();
+        this.autorDAO = new AutorDAO();
     }
 
     public Autor crearAutor(String nombre) {
-        Autor autor = new Autor();
+        validarNombreAutor(nombre);
+        validarExistenciaAutor(nombre);
         try {
-            validarCrearAutor(nombre);
-            autor.setNombre(nombre);
-            DAO.guardar(autor);
-            System.out.println("Autor guardado correctamente.");
+            Autor autor = new Autor(nombre);
+            autorDAO.guardar(autor);
+            System.out.println("Autor creado correctamente.");
             return autor;
         } catch (Exception e) {
             System.out.println("Error al crear el autor: " + e.getMessage());
@@ -30,9 +30,9 @@ public class AutorService {
     }
 
     public Autor editarAutor(Autor autor) {
+        validarAutor(autor);
         try {
-            validarEditarAutor(autor);
-            DAO.editar(autor);
+            autorDAO.editar(autor);
             System.out.println("Autor editado correctamente.");
             return autor;
         } catch (Exception e) {
@@ -41,10 +41,10 @@ public class AutorService {
         }
     }
 
-    public boolean eliminarPorId(Integer id) {
+    public boolean eliminarPorID(Integer id) {
+        validarID(id);
         try {
-            validarId(id);
-            DAO.eliminar(id);
+            autorDAO.eliminar(id);
             System.out.println("Autor eliminado correctamente.");
             return true;
         } catch (Exception e) {
@@ -53,55 +53,52 @@ public class AutorService {
         }
     }
 
-    public Autor buscarPorId(Integer id) {
+    public Autor buscarPorID(Integer id) {
+        validarID(id);
         try {
-            validarId(id);
-            return DAO.buscarPorId(id);
+            return autorDAO.buscarPorID(id);
         } catch (Exception e) {
             System.out.println("Error al buscar el autor por ID: " + e.getMessage());
             return null;
         }
     }
-    
+
     public Autor buscarPorNombre(String nombre) {
+        validarNombreAutor(nombre);
         try {
-            validarNombre(nombre);
-            return DAO.buscarPorNombre(nombre);
+            return autorDAO.buscarPorNombre(nombre);
         } catch (Exception e) {
             System.out.println("Error al buscar autor por nombre: " + e.getMessage());
             return null;
         }
     }
 
-    private void validarCrearAutor(String nombre) {
-        if (buscarPorNombre(nombre) != null) {
-            throw new IllegalArgumentException("El Autor ya existe en la base de datos.");
-        }
-        
+    private void validarNombreAutor(String nombre) {
         if (nombre == null || nombre.trim().isEmpty()) {
             throw new IllegalArgumentException("El nombre del autor es requerido.");
         }
     }
 
-    private void validarEditarAutor(Autor autor) {
+    private void validarExistenciaAutor(String nombre) {
+        Autor autorExistente = autorDAO.buscarPorNombre(nombre);
+        if (autorExistente != null) {
+            throw new IllegalArgumentException("El autor ya existe en la base de datos.");
+        }
+    }
+
+    private void validarAutor(Autor autor) {
         if (autor == null) {
-            throw new IllegalArgumentException("El libro es nulo.");
+            throw new IllegalArgumentException("El autor es nulo.");
         }
 
         if (autor.getNombre() == null || autor.getNombre().trim().isEmpty()) {
-            throw new IllegalArgumentException("El título del libro es requerido.");
+            throw new IllegalArgumentException("El nombre del autor es requerido.");
         }
     }
 
-    private void validarId(Integer id) {
+    private void validarID(Integer id) {
         if (id == null) {
             throw new IllegalArgumentException("El ID es requerido.");
-        }
-    }
-    
-    private void validarNombre(String nombre) {
-        if (nombre == null || nombre.trim().isEmpty()) {
-            throw new IllegalArgumentException("El nombre del autor es requerido.");
         }
     }
 

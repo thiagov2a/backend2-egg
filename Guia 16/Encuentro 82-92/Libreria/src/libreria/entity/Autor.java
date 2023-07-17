@@ -35,15 +35,22 @@ public class Autor implements Serializable {
     private List<Libro> libros;
 
     public Autor() {
+    }
+
+    public Autor(String nombre) {
+        this.nombre = nombre;
         this.alta = true;
         this.libros = new ArrayList();
     }
 
-    public Autor(Integer id, String nombre, Boolean alta, List<Libro> libros) {
-        this.id = id;
-        this.nombre = nombre;
-        this.alta = alta;
-        this.libros = libros;
+    public void agregarLibro(Libro libro) {
+        libros.add(libro);
+        libro.setAutor(this);
+    }
+
+    public void removerLibro(Libro libro) {
+        libros.remove(libro);
+        libro.setAutor(null);
     }
 
     public Integer getId() {
@@ -83,7 +90,7 @@ public class Autor implements Serializable {
         return "Autor{"
                 + "id=" + id
                 + ", nombre='" + nombre + '\''
-                + ", cantidadLibros=" + (libros != null ? libros.size() : 0)
+                + ", cantidadLibros=" + libros.size()
                 + '}';
     }
 

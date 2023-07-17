@@ -78,16 +78,9 @@ public class Menu {
             Libro libro = libroService.crearLibro(tituloLibro, añoPublicacion, numeroEjemplares, autor, editorial);
             // Hacer algo con el libro creado
         }
+        
+        
 
-
-        /*Autor autor = autorService.crearAutor("Joaquin");
-        Editorial editorial = editorialService.crearEditorial("IVREA");
-        Editorial editorial1 = editorialService.crearEditorial("Lollipop");
-        Libro libro = libroService.crearLibro(titulo, Integer.SIZE, Integer.BYTES, autor, editorial);
-        libroService.crearLibro("La Bella y la Bestia", 1945, 25, autor, editorial);
-        libroService.crearLibro("Guardianes de la Galaxia", 1996, 54, autor, editorial1);
-        Autor autor1 = autorService.buscarPorNombre("joaquin");
-        System.out.println(autor1.toString());*/
     }
 
 }

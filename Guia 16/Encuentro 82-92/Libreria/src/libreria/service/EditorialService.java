@@ -9,99 +9,96 @@ import libreria.persistence.EditorialDAO;
  */
 public class EditorialService {
 
-    private final EditorialDAO DAO;
+    private final EditorialDAO editorialDAO;
 
     public EditorialService() {
-        this.DAO = new EditorialDAO();
+        this.editorialDAO = new EditorialDAO();
     }
 
     public Editorial crearEditorial(String nombre) {
-        Editorial editorial = new Editorial();
+        validarNombreEditorial(nombre);
+        validarExistenciaEditorial(nombre);
         try {
-            validarCrearEditorial(nombre);
-            editorial.setNombre(nombre);
-            DAO.guardar(editorial);
-            System.out.println("Editorial guardada correctamente.");
+            Editorial editorial = new Editorial(nombre);
+            editorialDAO.guardar(editorial);
+            System.out.println("Editorial creada correctamente.");
             return editorial;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("Error al crear la editorial: " + e.getMessage());
             return null;
         }
     }
 
     public Editorial editarEditorial(Editorial editorial) {
+        validarEditorial(editorial);
         try {
-            validarEditarEditorial(editorial);
-            DAO.editar(editorial);
+            editorialDAO.editar(editorial);
             System.out.println("Editorial editada correctamente.");
             return editorial;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("Error al editar la editorial: " + e.getMessage());
             return null;
         }
     }
 
-    public boolean eliminarPorId(Integer id) {
+    public boolean eliminarPorID(Integer id) {
+        validarID(id);
         try {
-            validarId(id);
-            DAO.eliminar(id);
+            editorialDAO.eliminar(id);
             System.out.println("Editorial eliminada correctamente.");
             return true;
-        } catch (Exception e) {
-            System.out.println("Error al eliminar la editorial por ID: " + e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error al eliminar la editorial: " + e.getMessage());
             return false;
         }
     }
 
-    public Editorial buscarPorId(Integer id) {
+    public Editorial buscarPorID(Integer id) {
+        validarID(id);
         try {
-            validarId(id);
-            return DAO.buscarPorId(id);
-        } catch (Exception e) {
+            return editorialDAO.buscarPorID(id);
+        } catch (IllegalArgumentException e) {
             System.out.println("Error al buscar la editorial por ID: " + e.getMessage());
             return null;
         }
     }
 
     public Editorial buscarPorNombre(String nombre) {
+        validarNombreEditorial(nombre);
         try {
-            validarNombre(nombre);
-            return DAO.buscarPorNombre(nombre);
-        } catch (Exception e) {
-            System.out.println("Error al buscar editorial por nombre: " + e.getMessage());
+            return editorialDAO.buscarPorNombre(nombre);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error al buscar la editorial por nombre: " + e.getMessage());
             return null;
         }
     }
 
-    private void validarCrearEditorial(String nombre) {
-        if (buscarPorNombre(nombre) != null) {
-            throw new IllegalArgumentException("La Editorial ya existe en la base de datos.");
-        }
-
+    private void validarNombreEditorial(String nombre) {
         if (nombre == null || nombre.trim().isEmpty()) {
-            throw new IllegalArgumentException("El nombre del autor es requerido.");
+            throw new IllegalArgumentException("El nombre de la editorial es requerido.");
         }
     }
 
-    private void validarEditarEditorial(Editorial editorial) {
+    private void validarExistenciaEditorial(String nombre) {
+        Editorial editorialExistente = editorialDAO.buscarPorNombre(nombre);
+        if (editorialExistente != null) {
+            throw new IllegalArgumentException("La editorial ya existe en la base de datos.");
+        }
+    }
+
+    private void validarEditorial(Editorial editorial) {
         if (editorial == null) {
-            throw new IllegalArgumentException("El libro es nulo.");
+            throw new IllegalArgumentException("La editorial es nula.");
         }
 
         if (editorial.getNombre() == null || editorial.getNombre().trim().isEmpty()) {
-            throw new IllegalArgumentException("El título del libro es requerido.");
+            throw new IllegalArgumentException("El nombre de la editorial es requerido.");
         }
     }
 
-    private void validarId(Integer id) {
+    private void validarID(Integer id) {
         if (id == null) {
             throw new IllegalArgumentException("El ID es requerido.");
-        }
-    }
-
-    private void validarNombre(String nombre) {
-        if (nombre == null || nombre.trim().isEmpty()) {
-            throw new IllegalArgumentException("El nombre del autor es requerido.");
         }
     }
 

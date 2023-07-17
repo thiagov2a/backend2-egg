@@ -51,18 +51,15 @@ public class Libro implements Serializable {
     private Editorial editorial;
 
     public Libro() {
-        this.ejemplaresPrestados = 0; // Cuando creamos un nuevo libro no hay ejemplares prestados
-        this.alta = true;
     }
 
-    public Libro(Long isbn, String titulo, Integer año, Integer ejemplares, Integer ejemplaresPrestados, Integer ejemplaresRestantes, Boolean alta, Autor autor, Editorial editorial) {
-        this.isbn = isbn;
+    public Libro(String titulo, Integer año, Integer ejemplares, Autor autor, Editorial editorial) {
         this.titulo = titulo;
         this.año = año;
         this.ejemplares = ejemplares;
-        this.ejemplaresPrestados = ejemplaresPrestados;
-        this.ejemplaresRestantes = ejemplaresRestantes;
-        this.alta = alta;
+        this.ejemplaresPrestados = 0; // Cuando creamos un nuevo libro no hay ejemplares prestados
+        this.ejemplaresRestantes = ejemplares; // Cuando creamos un nuevo libro los ejemplares restantes son los mismos que los ejemplares
+        this.alta = true;
         this.autor = autor;
         this.editorial = editorial;
     }

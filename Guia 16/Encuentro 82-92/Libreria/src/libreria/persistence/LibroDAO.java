@@ -22,11 +22,11 @@ public final class LibroDAO extends DAO<Libro> {
     }
 
     public void eliminar(Long isbn) {
-        Libro libro = buscarPorIsbn(isbn);
+        Libro libro = buscarPorISBN(isbn);
         super.eliminar(libro);
     }
 
-    public Libro buscarPorIsbn(Long isbn) {
+    public Libro buscarPorISBN(Long isbn) {
         try {
             conectar();
             Libro libro = em.find(Libro.class, isbn);

@@ -35,15 +35,22 @@ public class Editorial implements Serializable {
     private List<Libro> libros;
 
     public Editorial() {
+    }
+
+    public Editorial(String nombre) {
+        this.nombre = nombre;
         this.alta = true;
         this.libros = new ArrayList();
     }
 
-    public Editorial(Integer id, String nombre, Boolean alta, List<Libro> libros) {
-        this.id = id;
-        this.nombre = nombre;
-        this.alta = alta;
-        this.libros = libros;
+    public void agregarLibro(Libro libro) {
+        libros.add(libro);
+        libro.setEditorial(this);
+    }
+
+    public void removerLibro(Libro libro) {
+        libros.remove(libro);
+        libro.setEditorial(null);
     }
 
     public Integer getId() {

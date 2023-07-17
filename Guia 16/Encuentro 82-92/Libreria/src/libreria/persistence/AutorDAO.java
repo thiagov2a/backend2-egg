@@ -20,11 +20,11 @@ public final class AutorDAO extends DAO<Autor> {
     }
 
     public void eliminar(Integer id) {
-        Autor autor = buscarPorId(id);
+        Autor autor = buscarPorID(id);
         super.eliminar(autor);
     }
 
-    public Autor buscarPorId(Integer id) {
+    public Autor buscarPorID(Integer id) {
         try {
             conectar();
             Autor autor = em.find(Autor.class, id);
