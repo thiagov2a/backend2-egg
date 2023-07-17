@@ -45,7 +45,7 @@ public final class AutorDAO extends DAO<Autor> {
                         .setParameter("nombre", nombre)
                         .getSingleResult();
             } catch (NoResultException e) {
-                // No se encontró ningún autor
+                throw new IllegalArgumentException("No se encontró ningún autor.");
             }
             return autor;
         } finally {

@@ -51,7 +51,7 @@ public final class LibroDAO extends DAO<Libro> {
                         .setParameter("editorial", editorial)
                         .getSingleResult();
             } catch (NoResultException e) {
-                // No se encontró ningún libro
+                throw new IllegalArgumentException("No se encontró ningún libro.");
             }
             return libro;
         } finally {

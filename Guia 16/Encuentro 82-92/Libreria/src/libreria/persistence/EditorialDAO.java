@@ -45,7 +45,7 @@ public final class EditorialDAO extends DAO<Editorial> {
                         .setParameter("nombre", nombre)
                         .getSingleResult();
             } catch (NoResultException e) {
-                // No se encontró ningún autor
+                throw new IllegalArgumentException("No se encontró ninguna editorial.");
             }
             return editorial;
         } finally {

@@ -59,7 +59,11 @@ public class LibroService {
     public Libro buscarPorISBN(Long isbn) {
         validarISBN(isbn);
         try {
-            return libroDAO.buscarPorISBN(isbn);
+            Libro libro = libroDAO.buscarPorISBN(isbn);
+            if (libro == null) {
+                throw new IllegalArgumentException("No se encontró ningún libro con el ISBN proporcionado.");
+            }
+            return libro;
         } catch (IllegalArgumentException e) {
             System.out.println("Error al buscar el libro por ISBN: " + e.getMessage());
             return null;
