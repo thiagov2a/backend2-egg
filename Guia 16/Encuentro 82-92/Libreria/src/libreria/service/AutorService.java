@@ -23,7 +23,7 @@ public class AutorService {
             autorDAO.guardar(autor);
             System.out.println("Autor creado correctamente.");
             return autor;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("Error al crear el autor: " + e.getMessage());
             return null;
         }
@@ -35,7 +35,7 @@ public class AutorService {
             autorDAO.editar(autor);
             System.out.println("Autor editado correctamente.");
             return autor;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("Error al editar el autor: " + e.getMessage());
             return null;
         }
@@ -47,7 +47,7 @@ public class AutorService {
             autorDAO.eliminar(id);
             System.out.println("Autor eliminado correctamente.");
             return true;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("Error al eliminar el autor por ID: " + e.getMessage());
             return false;
         }
@@ -57,7 +57,7 @@ public class AutorService {
         validarID(id);
         try {
             return autorDAO.buscarPorID(id);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("Error al buscar el autor por ID: " + e.getMessage());
             return null;
         }
@@ -67,7 +67,7 @@ public class AutorService {
         validarNombre(nombre);
         try {
             return autorDAO.buscarPorNombre(nombre);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("Error al buscar autor por nombre: " + e.getMessage());
             return null;
         }
