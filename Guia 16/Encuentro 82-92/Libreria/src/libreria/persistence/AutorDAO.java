@@ -28,6 +28,9 @@ public final class AutorDAO extends DAO<Autor> {
         try {
             conectar();
             Autor autor = em.find(Autor.class, id);
+            if (autor == null) {
+                throw new IllegalArgumentException("No se encontró ningún autor con el ID: " + id);
+            }
             return autor;
         } finally {
             desconectar();
@@ -37,17 +40,14 @@ public final class AutorDAO extends DAO<Autor> {
     public Autor buscarPorNombre(String nombre) {
         try {
             conectar();
-            Autor autor = null;
-            try {
-                autor = (Autor) em.createQuery("SELECT a "
-                        + "FROM Autor a "
-                        + "WHERE a.nombre = :nombre")
-                        .setParameter("nombre", nombre)
-                        .getSingleResult();
-            } catch (NoResultException e) {
-                throw new IllegalArgumentException("No se encontró ningún autor.");
-            }
+            Autor autor = em.createQuery("SELECT a "
+                    + "FROM Autor a "
+                    + "WHERE a.nombre = :nombre", Autor.class)
+                    .setParameter("nombre", nombre)
+                    .getSingleResult();
             return autor;
+        } catch (NoResultException e) {
+            throw new IllegalArgumentException("No se encontró ningún autor.");
         } finally {
             desconectar();
         }

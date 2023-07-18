@@ -59,13 +59,19 @@ public class LibroService {
     public Libro buscarPorISBN(Long isbn) {
         validarISBN(isbn);
         try {
-            Libro libro = libroDAO.buscarPorISBN(isbn);
-            if (libro == null) {
-                throw new IllegalArgumentException("No se encontró ningún libro con el ISBN proporcionado.");
-            }
-            return libro;
+            return libroDAO.buscarPorISBN(isbn);
         } catch (IllegalArgumentException e) {
             System.out.println("Error al buscar el libro por ISBN: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public Libro buscarPorTitulo(String titulo) {
+        validarTitulo(titulo);
+        try {
+            return libroDAO.buscarPorTitulo(titulo);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error al buscar el libro por título: " + e.getMessage());
             return null;
         }
     }

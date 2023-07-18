@@ -28,26 +28,26 @@ public final class EditorialDAO extends DAO<Editorial> {
         try {
             conectar();
             Editorial editorial = em.find(Editorial.class, id);
+            if (editorial == null) {
+                throw new IllegalArgumentException("No se encontró ninguna editorial con el ID: " + id);
+            }
             return editorial;
         } finally {
             desconectar();
         }
     }
-    
+
     public Editorial buscarPorNombre(String nombre) {
         try {
             conectar();
-            Editorial editorial = null;
-            try {
-                editorial = (Editorial) em.createQuery("SELECT e "
-                        + "FROM Editorial e "
-                        + "WHERE e.nombre = :nombre")
-                        .setParameter("nombre", nombre)
-                        .getSingleResult();
-            } catch (NoResultException e) {
-                throw new IllegalArgumentException("No se encontró ninguna editorial.");
-            }
+            Editorial editorial = em.createQuery("SELECT e "
+                    + "FROM Editorial e "
+                    + "WHERE e.nombre = :nombre", Editorial.class)
+                    .setParameter("nombre", nombre)
+                    .getSingleResult();
             return editorial;
+        } catch (NoResultException e) {
+            throw new IllegalArgumentException("No se encontró ninguna editorial.");
         } finally {
             desconectar();
         }

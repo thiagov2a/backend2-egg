@@ -56,11 +56,7 @@ public class AutorService {
     public Autor buscarPorID(Integer id) {
         validarID(id);
         try {
-            Autor autor = autorDAO.buscarPorID(id);
-            if (autor == null) {
-                throw new IllegalArgumentException("No se encontró ningún autor con el ID proporcionado.");
-            }
-            return autor;
+            return autorDAO.buscarPorID(id);
         } catch (IllegalArgumentException e) {
             System.out.println("Error al buscar el autor por ID: " + e.getMessage());
             return null;

@@ -1,5 +1,6 @@
 package libreria.persistence;
 
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.NoResultException;
 import libreria.entity.Autor;
 import libreria.entity.Editorial;
@@ -30,7 +31,26 @@ public final class LibroDAO extends DAO<Libro> {
         try {
             conectar();
             Libro libro = em.find(Libro.class, isbn);
+            if (libro == null) {
+                throw new IllegalArgumentException("No se encontró ningún libro con el ISBN: " + isbn);
+            }
             return libro;
+        } finally {
+            desconectar();
+        }
+    }
+
+    public Libro buscarPorTitulo(String titulo) {
+        try {
+            conectar();
+            Libro libro = em.createQuery("SELECT l "
+                    + "FROM Libro l "
+                    + "WHERE l.titulo = :titulo", Libro.class)
+                    .setParameter("titulo", titulo)
+                    .getSingleResult();
+            return libro;
+        } catch (NoResultException e) {
+            throw new IllegalArgumentException("No se encontró ningún libro con el título: " + titulo);
         } finally {
             desconectar();
         }
@@ -39,21 +59,18 @@ public final class LibroDAO extends DAO<Libro> {
     public Libro buscarPorTituloAutorEditorial(String titulo, Autor autor, Editorial editorial) {
         try {
             conectar();
-            Libro libro = null;
-            try {
-                libro = (Libro) em.createQuery("SELECT l "
-                        + "FROM Libro l "
-                        + "WHERE l.titulo = :titulo "
-                        + "AND l.autor = :autor "
-                        + "AND l.editorial = :editorial")
-                        .setParameter("titulo", titulo)
-                        .setParameter("autor", autor)
-                        .setParameter("editorial", editorial)
-                        .getSingleResult();
-            } catch (NoResultException e) {
-                throw new IllegalArgumentException("No se encontró ningún libro.");
-            }
+            Libro libro = em.createQuery("SELECT l "
+                    + "FROM Libro l "
+                    + "WHERE l.titulo = :titulo "
+                    + "AND l.autor = :autor "
+                    + "AND l.editorial = :editorial", Libro.class)
+                    .setParameter("titulo", titulo)
+                    .setParameter("autor", autor)
+                    .setParameter("editorial", editorial)
+                    .getSingleResult();
             return libro;
+        } catch (NoResultException e) {
+            throw new IllegalArgumentException("No se encontró ningún libro con los siguientes criterios: Título: " + titulo + ", Autor: " + autor.getNombre() + ", Editorial: " + editorial.getNombre());
         } finally {
             desconectar();
         }

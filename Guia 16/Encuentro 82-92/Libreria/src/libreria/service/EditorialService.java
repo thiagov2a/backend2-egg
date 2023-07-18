@@ -56,11 +56,7 @@ public class EditorialService {
     public Editorial buscarPorID(Integer id) {
         validarID(id);
         try {
-            Editorial editorial = editorialDAO.buscarPorID(id);
-            if (editorial == null) {
-                throw new IllegalArgumentException("No se encontró ninguna editorial con el ID proporcionado.");
-            }
-            return editorial;
+            return editorialDAO.buscarPorID(id);
         } catch (IllegalArgumentException e) {
             System.out.println("Error al buscar la editorial por ID: " + e.getMessage());
             return null;
