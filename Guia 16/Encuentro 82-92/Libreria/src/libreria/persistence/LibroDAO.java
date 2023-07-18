@@ -1,6 +1,5 @@
 package libreria.persistence;
 
-import javax.persistence.EntityNotFoundException;
 import javax.persistence.NoResultException;
 import libreria.entity.Autor;
 import libreria.entity.Editorial;

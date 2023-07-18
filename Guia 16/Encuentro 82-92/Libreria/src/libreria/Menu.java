@@ -27,7 +27,6 @@ public class Menu {
     }
 
     public void ejecutarMenu() {
-        libroService.buscarPorTitulo("asdas");
         boolean salir = false;
 
         while (salir) {
