@@ -58,7 +58,7 @@ public final class LibroDAO extends DAO<Libro> {
     public Libro buscarExistenciaLibro(String titulo, Autor autor, Editorial editorial) {
         try {
             conectar();
-            Libro libro = em.createQuery("SELECT l "
+            return em.createQuery("SELECT l "
                     + "FROM Libro l "
                     + "WHERE l.titulo = :titulo "
                     + "AND l.autor = :autor "
@@ -67,9 +67,8 @@ public final class LibroDAO extends DAO<Libro> {
                     .setParameter("autor", autor)
                     .setParameter("editorial", editorial)
                     .getSingleResult();
-            return libro;
         } catch (NoResultException e) {
-            throw new IllegalArgumentException("No se encontró ningún libro con los siguientes criterios: Título: " + titulo + ", Autor: " + autor.getNombre() + ", Editorial: " + editorial.getNombre());
+            return null;
         } finally {
             desconectar();
         }

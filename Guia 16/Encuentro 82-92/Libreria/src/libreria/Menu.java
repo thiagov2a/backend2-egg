@@ -71,35 +71,66 @@ public class Menu {
     }
 
     private void crearLibro() {
-        
+        System.out.println("==== CREAR LIBRO ====");
+        System.out.print("Título: ");
+        String titulo = validarString();
+        System.out.print("Año: ");
+        int año = validarEntero();
+        System.out.print("Cantidad de ejemplares: ");
+        int ejemplares = validarEntero();
+
+        // Obtener autor
+        System.out.print("Nombre del autor: ");
+        String nombreAutor = validarString();
+        Autor autor = autorService.buscarPorNombre(nombreAutor);
+        if (autor == null) {
+            System.out.println("El autor no existe. Debe crearlo antes de asociarlo al libro.");
+            return;
+        }
+
+        // Obtener editorial
+        System.out.print("Nombre de la editorial: ");
+        String nombreEditorial = validarString();
+        Editorial editorial = editorialService.buscarPorNombre(nombreEditorial);
+        if (editorial == null) {
+            System.out.println("La editorial no existe. Debe crearla antes de asociarla al libro.");
+            return;
+        }
+
+        Libro libro = libroService.crearLibro(titulo, año, ejemplares, autor, editorial);
+        if (libro != null) {
+            System.out.println("Libro creado correctamente.");
+        } else {
+            System.out.println("Error al crear el libro.");
+        }
     }
 
     private void crearAutor() {
-        
+
     }
 
     private void crearEditorial() {
-        
+
     }
 
     private void buscarAutorPorNombre() {
-        
+
     }
 
     private void buscarLibroPorISBN() {
-        
+
     }
 
     private void buscarLibroPorTitulo() {
-        
+
     }
 
     private void buscarLibrosPorAutor() {
-        
+
     }
 
     private void buscarLibrosPorEditorial() {
-        
+
     }
 
     private int validarEntero() {
