@@ -1,5 +1,6 @@
 package libreria.persistence;
 
+import java.util.List;
 import javax.persistence.NoResultException;
 import libreria.entity.Autor;
 
@@ -40,14 +41,28 @@ public final class AutorDAO extends DAO<Autor> {
     public Autor buscarPorNombre(String nombre) {
         try {
             conectar();
-            Autor autor = em.createQuery("SELECT a "
+            return em.createQuery("SELECT a "
                     + "FROM Autor a "
                     + "WHERE a.nombre = :nombre", Autor.class)
-                    .setParameter("nombre", nombre)
+                    .setParameter("nombre", "%" + nombre + "%")
                     .getSingleResult();
-            return autor;
         } catch (NoResultException e) {
-            throw new IllegalArgumentException("No se encontró ningún autor.");
+            throw new IllegalArgumentException("No se encontró ningún autor con el nombre: " + nombre);
+        } finally {
+            desconectar();
+        }
+    }
+
+    public List<Autor> listarPorNombre(String nombre) {
+        try {
+            conectar();
+            return em.createQuery("SELECT a "
+                    + "FROM Autor a "
+                    + "WHERE a.nombre = :nombre", Autor.class)
+                    .setParameter("nombre", "%" + nombre + "%")
+                    .getResultList();
+        } catch (NoResultException e) {
+            throw new IllegalArgumentException("No se encontró ningún autor con el nombre: " + nombre);
         } finally {
             desconectar();
         }

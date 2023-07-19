@@ -40,12 +40,11 @@ public final class EditorialDAO extends DAO<Editorial> {
     public Editorial buscarPorNombre(String nombre) {
         try {
             conectar();
-            Editorial editorial = em.createQuery("SELECT e "
+            return em.createQuery("SELECT e "
                     + "FROM Editorial e "
-                    + "WHERE e.nombre = :nombre", Editorial.class)
-                    .setParameter("nombre", nombre)
+                    + "WHERE e.nombre LIKE :nombre", Editorial.class)
+                    .setParameter("nombre", "%" + nombre + "%")
                     .getSingleResult();
-            return editorial;
         } catch (NoResultException e) {
             throw new IllegalArgumentException("No se encontró ninguna editorial.");
         } finally {

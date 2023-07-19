@@ -76,18 +76,6 @@ public class LibroService {
         }
     }
 
-    public Libro buscarPorTituloAutorEditorial(String titulo, Autor autor, Editorial editorial) {
-        validarTitulo(titulo);
-        validarAutor(autor);
-        validarEditorial(editorial);
-        try {
-            return libroDAO.buscarPorTituloAutorEditorial(titulo, autor, editorial);
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error al buscar el libro por título, autor y editorial: " + e.getMessage());
-            return null;
-        }
-    }
-
     private void validarCrearLibro(String titulo, Integer año, Integer ejemplares, Autor autor, Editorial editorial) {
         validarTitulo(titulo);
         validarAño(año);
@@ -107,7 +95,7 @@ public class LibroService {
     }
 
     private void validarExistenciaLibro(String titulo, Autor autor, Editorial editorial) {
-        Libro libroExistente = libroDAO.buscarPorTituloAutorEditorial(titulo, autor, editorial);
+        Libro libroExistente = libroDAO.buscarExistenciaLibro(titulo, autor, editorial);
         if (libroExistente != null) {
             throw new IllegalArgumentException("El libro ya existe en la base de datos.");
         }

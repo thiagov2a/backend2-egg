@@ -71,27 +71,35 @@ public class Menu {
     }
 
     private void crearLibro() {
+        
     }
 
     private void crearAutor() {
+        
     }
 
     private void crearEditorial() {
+        
     }
 
     private void buscarAutorPorNombre() {
+        
     }
 
     private void buscarLibroPorISBN() {
+        
     }
 
     private void buscarLibroPorTitulo() {
+        
     }
 
     private void buscarLibrosPorAutor() {
+        
     }
 
     private void buscarLibrosPorEditorial() {
+        
     }
 
     private int validarEntero() {

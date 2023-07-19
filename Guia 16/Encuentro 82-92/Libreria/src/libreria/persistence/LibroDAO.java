@@ -55,7 +55,7 @@ public final class LibroDAO extends DAO<Libro> {
         }
     }
 
-    public Libro buscarPorTituloAutorEditorial(String titulo, Autor autor, Editorial editorial) {
+    public Libro buscarExistenciaLibro(String titulo, Autor autor, Editorial editorial) {
         try {
             conectar();
             Libro libro = em.createQuery("SELECT l "
