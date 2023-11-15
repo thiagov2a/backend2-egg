@@ -6,4 +6,4 @@
 🔙 Java & MySQL
 </h1>
 
-📚 Ejercicios Prácticos de Bade de Datos del Curso FullStack de EGG en Asociación con Argentina Programa 4.0
+📚 Ejercicios Prácticos de Base de Datos del Curso FullStack de EGG con Argentina Programa 4.0
